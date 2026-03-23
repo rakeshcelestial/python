@@ -6,9 +6,10 @@ def top_k_frequent(nums, k):
     
     # Step 2: Create buckets
     buckets = [[] for _ in range(len(nums) + 1)]
-    
+
     for num, count in freq.items():
         buckets[count].append(num)
+        print(buckets)
     
     # Step 3: Collect top k elements
     result = []

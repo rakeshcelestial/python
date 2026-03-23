@@ -13,6 +13,9 @@ def load_users():
     except json.JSONDecodeError:
         log_message("ERROR", "JSON file corrupted")
         return {"users": []}
+    except:
+        log_message("ERROR", "SOME ERROR OCCURED")
+        return {"users": []}
 
 
 def save_users(data):

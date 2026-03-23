@@ -23,7 +23,7 @@ class Penguin(SwimmingBird):
         print("Penguin swims")
 
 
-# 🔹 Usage
+# Usage
 sparrow = Sparrow()
 penguin = Penguin()
 

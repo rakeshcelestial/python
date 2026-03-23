@@ -6,7 +6,7 @@ class TransactionLogger:
 class Account:
     def __init__(self, name, balance):
         self.__name = name
-        self.__balance = balance   # 🔒 private variable
+        self.__balance = balance   # private variable
         self._logger = TransactionLogger()
 
     def deposit(self, amount):
@@ -37,7 +37,7 @@ class SavingsAccount(Account):
     pass
 
 
-# 🔹 Usage
+# Usage
 acc = SavingsAccount("John", 1000)
 
 acc.deposit(500)

@@ -16,7 +16,7 @@ def word_frequency(filename):
     return freq
 
 
-# ✅ Best way
+#  Best way
 file_path = r"C:\Users\rakesh.p\Desktop\Py files\word_frequency\word.txt"
 
 print(word_frequency(file_path))

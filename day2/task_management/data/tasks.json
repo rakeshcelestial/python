@@ -1,0 +1,104 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Write Q2 Summary Report",
+      "description": "Compile and write the Q2 performance summary report for management review.",
+      "status": "pending",
+      "priority": "high",
+      "owner": "alice",
+      "created_at": "2026-03-20T08:00:00",
+      "updated_at": "2026-03-20T08:00:00"
+    },
+    {
+      "id": 2,
+      "title": "Fix Authentication Bug",
+      "description": "Users report intermittent 401 errors on login. Investigate JWT expiry logic.",
+      "status": "in_progress",
+      "priority": "high",
+      "owner": "bob",
+      "created_at": "2026-03-20T09:00:00",
+      "updated_at": "2026-03-21T10:00:00"
+    },
+    {
+      "id": 3,
+      "title": "Update API Documentation",
+      "description": "Add OpenAPI docs for all v2 endpoints including request/response examples.",
+      "status": "pending",
+      "priority": "medium",
+      "owner": "alice",
+      "created_at": "2026-03-20T10:00:00",
+      "updated_at": "2026-03-20T10:00:00"
+    },
+    {
+      "id": 4,
+      "title": "Database Migration Script",
+      "description": "Write and test the migration script for moving from SQLite to PostgreSQL.",
+      "status": "completed",
+      "priority": "high",
+      "owner": "carol",
+      "created_at": "2026-03-18T08:00:00",
+      "updated_at": "2026-03-19T17:00:00"
+    },
+    {
+      "id": 5,
+      "title": "Set Up CI/CD Pipeline",
+      "description": "Configure GitHub Actions for automated testing and deployment to staging.",
+      "status": "in_progress",
+      "priority": "medium",
+      "owner": "dave",
+      "created_at": "2026-03-19T09:00:00",
+      "updated_at": "2026-03-20T11:00:00"
+    },
+    {
+      "id": 6,
+      "title": "Design Landing Page Mockup",
+      "description": "Create Figma mockups for the new product landing page based on brand guidelines.",
+      "status": "pending",
+      "priority": "low",
+      "owner": "carol",
+      "created_at": "2026-03-20T12:00:00",
+      "updated_at": "2026-03-20T12:00:00"
+    },
+    {
+      "id": 7,
+      "title": "Code Review for Payment Module",
+      "description": "Review PR #142 — Stripe integration for subscription billing.",
+      "status": "pending",
+      "priority": "high",
+      "owner": "bob",
+      "created_at": "2026-03-21T08:30:00",
+      "updated_at": "2026-03-21T08:30:00"
+    },
+    {
+      "id": 8,
+      "title": "Write Unit Tests for User Service",
+      "description": "Achieve 90%+ coverage on user_service.py with pytest.",
+      "status": "completed",
+      "priority": "medium",
+      "owner": "alice",
+      "created_at": "2026-03-15T10:00:00",
+      "updated_at": "2026-03-16T16:00:00"
+    },
+    {
+      "id": 9,
+      "title": "Upgrade Dependencies",
+      "description": "Bump FastAPI, Pydantic, and SQLAlchemy to latest stable versions.",
+      "status": "cancelled",
+      "priority": "low",
+      "owner": "dave",
+      "created_at": "2026-03-10T09:00:00",
+      "updated_at": "2026-03-12T11:00:00"
+    },
+    {
+      "id": 10,
+      "title": "Performance Load Testing",
+      "description": "Run Locust load tests on /tasks and /users endpoints. Target: 500 RPS.",
+      "status": "pending",
+      "priority": "medium",
+      "owner": "carol",
+      "created_at": "2026-03-21T14:00:00",
+      "updated_at": "2026-03-21T14:00:00"
+    }
+  ]
+}
