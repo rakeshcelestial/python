@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     users_file: str = Field(default="data/users.json", alias="USERS_FILE")
     log_file: str = Field(default="logs/app.log", alias="LOG_FILE")
     log_level: str = Field(default="INFO", alias="LOG_LEVEL")
-
+    DATABASE_URL: str
     model_config = {"env_file": ".env", "populate_by_name": True}
 
 
