@@ -1,0 +1,326 @@
+{
+  "info": {
+    "name": "LoanHub-API",
+    "description": "LoanHub Loan Application & Management System — Postman Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8000", "type": "string" },
+    { "key": "user_id",  "value": "1",  "type": "string" },
+    { "key": "admin_id", "value": "1",  "type": "string" },
+    { "key": "loan_id",  "value": "1",  "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/auth/register", "host": ["{{base_url}}"], "path": ["auth","register"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"rahul\",\n  \"email\": \"rahul@mail.com\",\n  \"password\": \"secure1234\",\n  \"phone\": \"9876543210\",\n  \"monthly_income\": 55000\n}"
+            },
+            "description": "Expected status: 201"
+          }
+        },
+        {
+          "name": "Login (user)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/auth/login", "host": ["{{base_url}}"], "path": ["auth","login"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"rahul\",\n  \"password\": \"secure1234\"\n}"
+            },
+            "description": "Expected status: 200"
+          }
+        },
+        {
+          "name": "Login (admin)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/auth/login", "host": ["{{base_url}}"], "path": ["auth","login"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin1234\"\n}"
+            },
+            "description": "Expected status: 200"
+          }
+        }
+      ]
+    },
+    {
+      "name": "User - Loans",
+      "item": [
+        {
+          "name": "Apply for Loan",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/loans?user_id={{user_id}}",
+              "host": ["{{base_url}}"], "path": ["loans"],
+              "query": [{ "key": "user_id", "value": "{{user_id}}" }]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 500000,\n  \"purpose\": \"home\",\n  \"tenure_months\": 240,\n  \"employment_status\": \"employed\"\n}"
+            },
+            "description": "Expected status: 201"
+          }
+        },
+        {
+          "name": "List My Loans",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/loans/my?user_id={{user_id}}",
+              "host": ["{{base_url}}"], "path": ["loans","my"],
+              "query": [{ "key": "user_id", "value": "{{user_id}}" }]
+            },
+            "description": "Expected status: 200"
+          }
+        },
+        {
+          "name": "List with Status Filter",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/loans/my?user_id={{user_id}}&status=pending",
+              "host": ["{{base_url}}"], "path": ["loans","my"],
+              "query": [
+                { "key": "user_id", "value": "{{user_id}}" },
+                { "key": "status",  "value": "pending" }
+              ]
+            },
+            "description": "Expected status: 200"
+          }
+        },
+        {
+          "name": "View Single Loan",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/loans/my/{{loan_id}}?user_id={{user_id}}",
+              "host": ["{{base_url}}"], "path": ["loans","my","{{loan_id}}"],
+              "query": [{ "key": "user_id", "value": "{{user_id}}" }]
+            },
+            "description": "Expected status: 200"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Loans",
+      "item": [
+        {
+          "name": "List All Loans",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/loans?user_id={{admin_id}}",
+              "host": ["{{base_url}}"], "path": ["admin","loans"],
+              "query": [{ "key": "user_id", "value": "{{admin_id}}" }]
+            },
+            "description": "Expected status: 200"
+          }
+        },
+        {
+          "name": "List with Filters (status, user_id, purpose)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/loans?user_id={{admin_id}}&status=pending&purpose=home",
+              "host": ["{{base_url}}"], "path": ["admin","loans"],
+              "query": [
+                { "key": "user_id", "value": "{{admin_id}}" },
+                { "key": "status",  "value": "pending" },
+                { "key": "purpose", "value": "home" }
+              ]
+            },
+            "description": "Expected status: 200"
+          }
+        },
+        {
+          "name": "View Single Loan (admin)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/loans/{{loan_id}}?user_id={{admin_id}}",
+              "host": ["{{base_url}}"], "path": ["admin","loans","{{loan_id}}"],
+              "query": [{ "key": "user_id", "value": "{{admin_id}}" }]
+            },
+            "description": "Expected status: 200"
+          }
+        },
+        {
+          "name": "Approve Loan",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/admin/loans/{{loan_id}}/review?user_id={{admin_id}}",
+              "host": ["{{base_url}}"], "path": ["admin","loans","{{loan_id}}","review"],
+              "query": [{ "key": "user_id", "value": "{{admin_id}}" }]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"approved\",\n  \"admin_remarks\": \"Good income-to-loan ratio. Approved for 240-month tenure.\"\n}"
+            },
+            "description": "Expected status: 200"
+          }
+        },
+        {
+          "name": "Reject Loan",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/admin/loans/{{loan_id}}/review?user_id={{admin_id}}",
+              "host": ["{{base_url}}"], "path": ["admin","loans","{{loan_id}}","review"],
+              "query": [{ "key": "user_id", "value": "{{admin_id}}" }]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"rejected\",\n  \"admin_remarks\": \"Insufficient monthly income for requested loan amount.\"\n}"
+            },
+            "description": "Expected status: 200"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Error Cases",
+      "item": [
+        {
+          "name": "Duplicate Registration",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/auth/register", "host": ["{{base_url}}"], "path": ["auth","register"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"rahul\",\n  \"email\": \"rahul@mail.com\",\n  \"password\": \"secure1234\",\n  \"phone\": \"9876543210\",\n  \"monthly_income\": 55000\n}"
+            },
+            "description": "Expected status: 409 DuplicateUserError"
+          }
+        },
+        {
+          "name": "Wrong Password Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/auth/login", "host": ["{{base_url}}"], "path": ["auth","login"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"rahul\",\n  \"password\": \"wrongpassword\"\n}"
+            },
+            "description": "Expected status: 401 InvalidCredentialsError"
+          }
+        },
+        {
+          "name": "Loan Amount Too High",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/loans?user_id={{user_id}}",
+              "host": ["{{base_url}}"], "path": ["loans"],
+              "query": [{ "key": "user_id", "value": "{{user_id}}" }]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 2000000,\n  \"purpose\": \"home\",\n  \"tenure_months\": 240,\n  \"employment_status\": \"employed\"\n}"
+            },
+            "description": "Expected status: 422 ValidationError"
+          }
+        },
+        {
+          "name": "4th Pending Loan",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/loans?user_id={{user_id}}",
+              "host": ["{{base_url}}"], "path": ["loans"],
+              "query": [{ "key": "user_id", "value": "{{user_id}}" }]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 100000,\n  \"purpose\": \"personal\",\n  \"tenure_months\": 12,\n  \"employment_status\": \"employed\"\n}"
+            },
+            "description": "Expected status: 422 MaxPendingLoansError (after already having 3 pending loans)"
+          }
+        },
+        {
+          "name": "Re-review Already Reviewed Loan",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/admin/loans/{{loan_id}}/review?user_id={{admin_id}}",
+              "host": ["{{base_url}}"], "path": ["admin","loans","{{loan_id}}","review"],
+              "query": [{ "key": "user_id", "value": "{{admin_id}}" }]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"rejected\",\n  \"admin_remarks\": \"Trying to re-review an approved loan.\"\n}"
+            },
+            "description": "Expected status: 422 InvalidLoanReviewError"
+          }
+        },
+        {
+          "name": "Non-Admin Access to Admin Endpoint",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/loans?user_id={{user_id}}",
+              "host": ["{{base_url}}"], "path": ["admin","loans"],
+              "query": [{ "key": "user_id", "value": "{{user_id}}" }]
+            },
+            "description": "Expected status: 403 ForbiddenError"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "GET /analytics/summary",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/analytics/summary?user_id={{admin_id}}",
+              "host": ["{{base_url}}"], "path": ["analytics","summary"],
+              "query": [{ "key": "user_id", "value": "{{admin_id}}" }]
+            },
+            "description": "Expected status: 200 — aggregated loan statistics"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Utility",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"], "path": ["health"]
+            },
+            "description": "Expected status: 200"
+          }
+        }
+      ]
+    }
+  ]
+}

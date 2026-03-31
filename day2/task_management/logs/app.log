@@ -1,0 +1,44 @@
+2026-03-20 08:00:00 - INFO - main - Starting TaskManagementAPI v1.0.0
+2026-03-20 08:00:01 - INFO - json_repository - Created new data file: data/users.json
+2026-03-20 08:00:01 - INFO - json_repository - Created new data file: data/tasks.json
+2026-03-20 08:01:10 - INFO - user_service - User 'alice' registered
+2026-03-20 08:01:10 - INFO - middleware - POST /users/register | 201 | 12ms
+2026-03-20 08:02:05 - INFO - user_service - User 'bob' registered
+2026-03-20 08:02:05 - INFO - middleware - POST /users/register | 201 | 10ms
+2026-03-20 08:02:30 - INFO - user_service - User 'carol' registered
+2026-03-20 08:02:30 - INFO - middleware - POST /users/register | 201 | 9ms
+2026-03-20 08:02:55 - INFO - user_service - User 'dave' registered
+2026-03-20 08:02:55 - INFO - middleware - POST /users/register | 201 | 11ms
+2026-03-20 08:03:10 - WARNING - user_service - Duplicate username: 'alice'
+2026-03-20 08:03:10 - INFO - middleware - POST /users/register | 409 | 5ms
+2026-03-20 08:05:00 - INFO - user_service - User 'alice' logged in
+2026-03-20 08:05:00 - INFO - middleware - POST /users/login | 200 | 8ms
+2026-03-20 08:05:30 - WARNING - user_service - Failed login attempt for username: 'ghost'
+2026-03-20 08:05:30 - INFO - middleware - POST /users/login | 401 | 4ms
+2026-03-20 08:10:00 - INFO - task_service - Task 'Write Q2 Summary Report' created by 'alice'
+2026-03-20 08:10:00 - INFO - middleware - POST /tasks | 201 | 15ms
+2026-03-20 08:11:00 - INFO - task_service - Task 'Fix Authentication Bug' created by 'bob'
+2026-03-20 08:11:00 - INFO - middleware - POST /tasks | 201 | 13ms
+2026-03-20 08:12:00 - INFO - task_service - Task 'Update API Documentation' created by 'alice'
+2026-03-20 08:12:00 - INFO - middleware - POST /tasks | 201 | 11ms
+2026-03-20 08:20:00 - INFO - middleware - GET /tasks | 200 | 6ms
+2026-03-20 08:20:30 - INFO - middleware - GET /tasks?status=pending | 200 | 5ms
+2026-03-20 08:21:00 - INFO - middleware - GET /tasks?priority=high | 200 | 5ms
+2026-03-20 08:21:30 - INFO - middleware - GET /tasks?owner=alice | 200 | 4ms
+2026-03-20 08:22:00 - INFO - middleware - GET /tasks?page=1&limit=5 | 200 | 4ms
+2026-03-20 08:30:00 - INFO - middleware - GET /tasks/1 | 200 | 3ms
+2026-03-20 08:30:30 - ERROR - task_service - Task ID 999 not found
+2026-03-20 08:30:30 - INFO - middleware - GET /tasks/999 | 404 | 4ms
+2026-03-20 08:35:00 - INFO - task_service - Task ID 2 updated
+2026-03-20 08:35:00 - INFO - middleware - PATCH /tasks/2 | 200 | 9ms
+2026-03-20 08:40:00 - INFO - task_service - Task ID 9 deleted
+2026-03-20 08:40:00 - INFO - middleware - DELETE /tasks/9 | 200 | 7ms
+2026-03-20 08:41:00 - ERROR - task_service - Task ID 999 not found
+2026-03-20 08:41:00 - INFO - middleware - DELETE /tasks/999 | 404 | 4ms
+2026-03-20 08:45:00 - INFO - middleware - GET /users | 200 | 5ms
+2026-03-20 08:50:00 - ERROR - user_service - User ID 9999 not found
+2026-03-20 08:50:00 - INFO - middleware - DELETE /users/9999 | 404 | 3ms
+2026-03-23 17:58:12 - INFO - main - Health check endpoint called
+2026-03-23 17:58:12 - INFO - middleware - GET / | 200 | 36ms
+2026-03-25 11:42:48 - INFO - main - Health check endpoint called
+2026-03-25 11:42:48 - INFO - middleware - GET / | 200 | 4ms

@@ -1,0 +1,244 @@
+{
+  "info": {
+    "name": "Day2-TaskAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for FastAPI Task Management System"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"alice\",\n  \"email\": \"alice@techcorp.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {"raw": "http://localhost:8000/users/register", "host": ["localhost"], "port": "8000", "path": ["users", "register"]}
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"alice\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {"raw": "http://localhost:8000/users/login", "host": ["localhost"], "port": "8000", "path": ["users", "login"]}
+          },
+          "response": []
+        },
+        {
+          "name": "List All Users",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8000/users", "host": ["localhost"], "port": "8000", "path": ["users"]}
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "url": {"raw": "http://localhost:8000/users/1", "host": ["localhost"], "port": "8000", "path": ["users", "1"]}
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "Create Task",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"New Feature Implementation\",\n  \"description\": \"Implement dark mode toggle for the dashboard\",\n  \"priority\": \"high\",\n  \"owner\": \"alice\"\n}"
+            },
+            "url": {"raw": "http://localhost:8000/tasks", "host": ["localhost"], "port": "8000", "path": ["tasks"]}
+          },
+          "response": []
+        },
+        {
+          "name": "List Tasks",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8000/tasks", "host": ["localhost"], "port": "8000", "path": ["tasks"]}
+          },
+          "response": []
+        },
+        {
+          "name": "List Tasks - Filter by Status",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/tasks?status=pending",
+              "host": ["localhost"], "port": "8000", "path": ["tasks"],
+              "query": [{"key": "status", "value": "pending"}]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Tasks - Filter by Priority",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/tasks?priority=high",
+              "host": ["localhost"], "port": "8000", "path": ["tasks"],
+              "query": [{"key": "priority", "value": "high"}]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Tasks - Filter by Owner",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/tasks?owner=alice",
+              "host": ["localhost"], "port": "8000", "path": ["tasks"],
+              "query": [{"key": "owner", "value": "alice"}]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Tasks - Paginated",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/tasks?page=1&limit=5",
+              "host": ["localhost"], "port": "8000", "path": ["tasks"],
+              "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "5"}]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Task by ID",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8000/tasks/1", "host": ["localhost"], "port": "8000", "path": ["tasks", "1"]}
+          },
+          "response": []
+        },
+        {
+          "name": "Full Update Task (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Write Q2 Summary Report (Revised)\",\n  \"description\": \"Updated scope: include HR metrics\",\n  \"priority\": \"high\",\n  \"owner\": \"alice\"\n}"
+            },
+            "url": {"raw": "http://localhost:8000/tasks/1", "host": ["localhost"], "port": "8000", "path": ["tasks", "1"]}
+          },
+          "response": []
+        },
+        {
+          "name": "Partial Update Task (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"in_progress\"\n}"
+            },
+            "url": {"raw": "http://localhost:8000/tasks/1", "host": ["localhost"], "port": "8000", "path": ["tasks", "1"]}
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Task",
+          "request": {
+            "method": "DELETE",
+            "url": {"raw": "http://localhost:8000/tasks/10", "host": ["localhost"], "port": "8000", "path": ["tasks", "10"]}
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Error Cases",
+      "item": [
+        {
+          "name": "Duplicate User Registration",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"alice\",\n  \"email\": \"alice@techcorp.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {"raw": "http://localhost:8000/users/register", "host": ["localhost"], "port": "8000", "path": ["users", "register"]}
+          },
+          "response": []
+        },
+        {
+          "name": "Bad Credentials Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"alice\",\n  \"password\": \"wrongpassword\"\n}"
+            },
+            "url": {"raw": "http://localhost:8000/users/login", "host": ["localhost"], "port": "8000", "path": ["users", "login"]}
+          },
+          "response": []
+        },
+        {
+          "name": "Task Not Found",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8000/tasks/9999", "host": ["localhost"], "port": "8000", "path": ["tasks", "9999"]}
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Payload - Short Title",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"AB\",\n  \"priority\": \"high\",\n  \"owner\": \"alice\"\n}"
+            },
+            "url": {"raw": "http://localhost:8000/tasks", "host": ["localhost"], "port": "8000", "path": ["tasks"]}
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Enum Value",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/tasks?status=invalid_status",
+              "host": ["localhost"], "port": "8000", "path": ["tasks"],
+              "query": [{"key": "status", "value": "invalid_status"}]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Not Found - Delete",
+          "request": {
+            "method": "DELETE",
+            "url": {"raw": "http://localhost:8000/users/9999", "host": ["localhost"], "port": "8000", "path": ["users", "9999"]}
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+2026-03-25 10:00:10 - INFO - [2026-03-25T10:00:10+00:00] New loan application #1 by 'rahul' for home --- ₹500000
+2026-03-25 10:00:20 - INFO - [2026-03-25T10:00:20+00:00] New loan application #2 by 'priya' for education --- ₹150000
+2026-03-25 10:00:25 - INFO - [2026-03-25T10:00:25+00:00] New loan application #3 by 'amit' for personal --- ₹75000
+2026-03-25 10:00:35 - INFO - [2026-03-25T10:00:35+00:00] Loan #1 for user 'rahul' has been approved --- notification sent
+2026-03-25 10:00:50 - INFO - [2026-03-25T10:00:50+00:00] Loan #2 for user 'priya' has been rejected --- notification sent
+2026-03-25 10:01:05 - INFO - [2026-03-25T10:01:05+00:00] New loan application #4 by 'rahul' for vehicle --- ₹300000
+2026-03-25 10:01:20 - INFO - [2026-03-25T10:01:20+00:00] Loan #3 for user 'amit' has been approved --- notification sent
