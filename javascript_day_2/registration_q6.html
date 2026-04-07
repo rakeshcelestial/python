@@ -1,0 +1,212 @@
+```html id="6n2h0c"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 500px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+
+    .field {
+      margin-bottom: 15px;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+    }
+
+    .strength {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .weak { color: red; }
+    .medium { color: orange; }
+    .strong { color: green; }
+
+    button {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<form id="form" novalidate>
+
+  <div class="field">
+    <label>Name</label>
+    <input id="name" required />
+    <div class="error" id="name-error"></div>
+  </div>
+
+  <div class="field">
+    <label>Email</label>
+    <input id="email" required />
+    <div class="error" id="email-error"></div>
+  </div>
+
+  <div class="field">
+    <label>Phone</label>
+    <input id="phone" required />
+    <div class="error" id="phone-error"></div>
+  </div>
+
+  <div class="field">
+    <label>Password</label>
+    <input id="password" type="password" required />
+    <div class="strength" id="strength"></div>
+    <div class="error" id="password-error"></div>
+  </div>
+
+  <div class="field">
+    <label>Confirm Password</label>
+    <input id="confirm" type="password" required />
+    <div class="error" id="confirm-error"></div>
+  </div>
+
+  <div class="field">
+    <label>Age</label>
+    <input id="age" type="number" required />
+    <div class="error" id="age-error"></div>
+  </div>
+
+  <button type="submit">Register</button>
+
+</form>
+
+<pre id="output"></pre>
+
+<script>
+  const form = document.getElementById("form");
+
+  const nameEl = document.getElementById("name");
+  const emailEl = document.getElementById("email");
+  const phoneEl = document.getElementById("phone");
+  const passwordEl = document.getElementById("password");
+  const confirmEl = document.getElementById("confirm");
+  const ageEl = document.getElementById("age");
+
+  const strengthEl = document.getElementById("strength");
+
+  // Regex
+  const nameRegex = /^[A-Za-z ]{2,}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^\d{10}$/;
+
+  function showError(el, message) {
+    document.getElementById(el.id + "-error").textContent = message;
+    el.setCustomValidity(message);
+  }
+
+  function clearError(el) {
+    document.getElementById(el.id + "-error").textContent = "";
+    el.setCustomValidity("");
+  }
+
+  // -------- VALIDATIONS --------
+
+  nameEl.addEventListener("blur", () => {
+    if (!nameRegex.test(nameEl.value)) {
+      showError(nameEl, "Enter valid name (min 2 letters)");
+    } else clearError(nameEl);
+  });
+
+  emailEl.addEventListener("blur", () => {
+    if (!emailRegex.test(emailEl.value)) {
+      showError(emailEl, "Enter valid email");
+    } else clearError(emailEl);
+  });
+
+  phoneEl.addEventListener("blur", () => {
+    if (!phoneRegex.test(phoneEl.value)) {
+      showError(phoneEl, "Enter 10 digit phone");
+    } else clearError(phoneEl);
+  });
+
+  passwordEl.addEventListener("input", () => {
+    const val = passwordEl.value;
+
+    let strength = 0;
+    if (/[a-z]/.test(val)) strength++;
+    if (/[A-Z]/.test(val)) strength++;
+    if (/\d/.test(val)) strength++;
+    if (/[@$!%*?&]/.test(val)) strength++;
+
+    if (val.length < 8) {
+      showError(passwordEl, "Min 8 chars required");
+      strengthEl.textContent = "";
+      return;
+    } else {
+      clearError(passwordEl);
+    }
+
+    if (strength <= 2) {
+      strengthEl.textContent = "Weak";
+      strengthEl.className = "strength weak";
+    } else if (strength === 3) {
+      strengthEl.textContent = "Medium";
+      strengthEl.className = "strength medium";
+    } else {
+      strengthEl.textContent = "Strong";
+      strengthEl.className = "strength strong";
+    }
+  });
+
+  confirmEl.addEventListener("blur", () => {
+    if (confirmEl.value !== passwordEl.value) {
+      showError(confirmEl, "Passwords do not match");
+    } else clearError(confirmEl);
+  });
+
+  ageEl.addEventListener("blur", () => {
+    const age = Number(ageEl.value);
+    if (age < 18 || age > 120) {
+      showError(ageEl, "Age must be 18-120");
+    } else clearError(ageEl);
+  });
+
+  // -------- SUBMIT --------
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // Trigger validation
+    nameEl.blur();
+    emailEl.blur();
+    phoneEl.blur();
+    confirmEl.blur();
+    ageEl.blur();
+
+    if (!form.checkValidity()) return;
+
+    const data = new FormData(form);
+    const obj = Object.fromEntries(data.entries());
+
+    document.getElementById("output").textContent =
+      JSON.stringify(obj, null, 2);
+  });
+</script>
+
+</body>
+</html>
+```

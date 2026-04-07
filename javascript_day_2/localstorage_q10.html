@@ -1,0 +1,185 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notes App</title>
+
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input, textarea, select { width: 100%; margin: 5px 0; padding: 8px; }
+    .note { padding: 10px; margin: 10px 0; border-radius: 6px; }
+    .yellow { background: #fff3cd; }
+    .blue { background: #cce5ff; }
+    .green { background: #d4edda; }
+    button { margin: 5px 2px; }
+  </style>
+</head>
+<body>
+
+<h2>Notes App</h2>
+
+<input id="title" placeholder="Title">
+<textarea id="content" placeholder="Content"></textarea>
+
+<select id="color">
+  <option value="yellow">Yellow</option>
+  <option value="blue">Blue</option>
+  <option value="green">Green</option>
+</select>
+
+<button id="add">Add Note</button>
+<button id="export">Export JSON</button>
+<input type="file" id="import">
+
+<br><br>
+<input id="search" placeholder="Search notes...">
+
+<select id="sort">
+  <option value="date">Sort by Date</option>
+  <option value="title">Sort by Title</option>
+</select>
+
+<p id="info"></p>
+
+<div id="notes"></div>
+
+<script>
+let notes = JSON.parse(localStorage.getItem("notes")) || [];
+
+// -------- SAVE --------
+function saveNotes() {
+  try {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  } catch (e) {
+    if (e.name === "QuotaExceededError") {
+      alert("Storage full!");
+    }
+  }
+}
+
+// -------- RENDER --------
+function render() {
+  const container = document.getElementById("notes");
+  container.innerHTML = "";
+
+  let filtered = notes.filter(n => {
+    const q = document.getElementById("search").value.toLowerCase();
+    return n.title.toLowerCase().includes(q) || n.content.toLowerCase().includes(q);
+  });
+
+  const sortType = document.getElementById("sort").value;
+
+  if (sortType === "date") {
+    filtered.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+  } else {
+    filtered.sort((a,b) => a.title.localeCompare(b.title));
+  }
+
+  filtered.forEach(note => {
+    const div = document.createElement("div");
+    div.className = "note " + note.color;
+
+    div.innerHTML = `
+      <strong>${note.title}</strong><br>
+      ${note.content}<br>
+      <small>Updated: ${new Date(note.updatedAt).toLocaleString()}</small><br>
+      <button onclick="editNote('${note.id}')">Edit</button>
+      <button onclick="deleteNote('${note.id}')">Delete</button>
+    `;
+
+    container.appendChild(div);
+  });
+
+  document.getElementById("info").textContent =
+    `Total Notes: ${filtered.length}`;
+}
+
+// -------- ADD --------
+document.getElementById("add").onclick = () => {
+  const title = document.getElementById("title").value.trim();
+  const content = document.getElementById("content").value.trim();
+  const color = document.getElementById("color").value;
+
+  if (!title || !content) return;
+
+  const note = {
+    id: Date.now() + Math.random(),
+    title,
+    content,
+    color,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+
+  notes.push(note);
+  saveNotes();
+  render();
+};
+
+// -------- DELETE --------
+function deleteNote(id) {
+  if (!confirm("Delete note?")) return;
+  notes = notes.filter(n => n.id != id);
+  saveNotes();
+  render();
+}
+
+// -------- EDIT --------
+function editNote(id) {
+  const note = notes.find(n => n.id == id);
+  if (!note) return;
+
+  const newTitle = prompt("Edit title", note.title);
+  const newContent = prompt("Edit content", note.content);
+
+  if (newTitle && newContent) {
+    note.title = newTitle;
+    note.content = newContent;
+    note.updatedAt = new Date().toISOString();
+    saveNotes();
+    render();
+  }
+}
+
+// -------- SEARCH / SORT --------
+document.getElementById("search").oninput = render;
+document.getElementById("sort").onchange = render;
+
+// -------- EXPORT --------
+document.getElementById("export").onclick = () => {
+  const blob = new Blob([JSON.stringify(notes, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "notes.json";
+  a.click();
+};
+
+// -------- IMPORT --------
+document.getElementById("import").onchange = (e) => {
+  const file = e.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    try {
+      const data = JSON.parse(reader.result);
+      notes = data;
+      saveNotes();
+      render();
+    } catch {
+      alert("Invalid JSON");
+    }
+  };
+
+  reader.readAsText(file);
+};
+
+// Initial render
+render();
+</script>
+
+</body>
+</html>
+```

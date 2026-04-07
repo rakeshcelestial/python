@@ -1,0 +1,191 @@
+```html id="j4m9xp"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accessible Modal</title>
+
+  <style>
+    body { font-family: Arial; padding: 20px; }
+
+    /* Backdrop */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Modal */
+    .modal {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      min-width: 300px;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-backdrop.active .modal {
+      transform: scale(1);
+    }
+
+    .modal h2 { margin-top: 0; }
+
+    .actions {
+      margin-top: 15px;
+      text-align: right;
+    }
+
+    button { margin-left: 5px; }
+  </style>
+</head>
+<body>
+
+<h2>Modal Demo</h2>
+<button id="openBtn">Open Modal</button>
+
+<script>
+// -------- CREATE MODAL --------
+function createModal({ title, content, onConfirm, onCancel }) {
+  let lastFocused = null;
+
+  const backdrop = document.createElement("div");
+  backdrop.className = "modal-backdrop";
+  backdrop.setAttribute("aria-hidden", "true");
+
+  const modal = document.createElement("div");
+  modal.className = "modal";
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+
+  const titleId = "modal-title-" + Date.now();
+  modal.setAttribute("aria-labelledby", titleId);
+
+  modal.innerHTML = `
+    <h2 id="${titleId}">${title}</h2>
+    <p>${content}</p>
+    <div class="actions">
+      <button data-action="cancel">Cancel</button>
+      <button data-action="confirm">Confirm</button>
+    </div>
+  `;
+
+  backdrop.appendChild(modal);
+  document.body.appendChild(backdrop);
+
+  const focusableSelectors = `
+    button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])
+  `;
+
+  function getFocusable() {
+    return modal.querySelectorAll(focusableSelectors);
+  }
+
+  // -------- FOCUS TRAP --------
+  function trapFocus(e) {
+    if (e.key !== "Tab") return;
+
+    const focusable = getFocusable();
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  // -------- ESC KEY --------
+  function handleEsc(e) {
+    if (e.key === "Escape") close();
+  }
+
+  // -------- CLICK HANDLING --------
+  backdrop.addEventListener("click", (e) => {
+    if (e.target === backdrop) close();
+  });
+
+  modal.addEventListener("click", (e) => {
+    const action = e.target.dataset.action;
+
+    if (action === "confirm") {
+      onConfirm && onConfirm();
+      close();
+    }
+
+    if (action === "cancel") {
+      onCancel && onCancel();
+      close();
+    }
+  });
+
+  // -------- OPEN --------
+  function open() {
+    lastFocused = document.activeElement;
+
+    backdrop.classList.add("active");
+    backdrop.setAttribute("aria-hidden", "false");
+
+    document.body.style.overflow = "hidden";
+
+    const focusable = getFocusable();
+    focusable[0]?.focus();
+
+    document.addEventListener("keydown", trapFocus);
+    document.addEventListener("keydown", handleEsc);
+  }
+
+  // -------- CLOSE --------
+  function close() {
+    backdrop.classList.remove("active");
+    backdrop.setAttribute("aria-hidden", "true");
+
+    document.body.style.overflow = "";
+
+    document.removeEventListener("keydown", trapFocus);
+    document.removeEventListener("keydown", handleEsc);
+
+    // Restore focus
+    lastFocused?.focus();
+  }
+
+  // -------- DESTROY --------
+  function destroy() {
+    backdrop.remove();
+  }
+
+  return { open, close, destroy };
+}
+
+// -------- DEMO --------
+const btn = document.getElementById("openBtn");
+
+btn.addEventListener("click", () => {
+  const modal = createModal({
+    title: "Confirm",
+    content: "Are you sure?",
+    onConfirm: () => console.log("Yes"),
+    onCancel: () => console.log("No")
+  });
+
+  modal.open();
+});
+</script>
+
+</body>
+</html>
+```

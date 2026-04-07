@@ -1,0 +1,148 @@
+```html id="b7kq2s"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Todo List - Event Delegation</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    input {
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 8px 10px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    ul {
+      margin-top: 20px;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .completed .text {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .text {
+      flex: 1;
+      cursor: pointer;
+    }
+
+    .delete-btn {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Todo List</h2>
+
+  <input id="todo-input" placeholder="Add todo..." />
+  <button id="add-btn">Add</button>
+
+  <ul id="todo-list"></ul>
+
+  <script>
+    const input = document.getElementById("todo-input");
+    const addBtn = document.getElementById("add-btn");
+    const list = document.getElementById("todo-list");
+
+    let idCounter = 1;
+
+    // -------- ADD TODO --------
+    addBtn.addEventListener("click", () => {
+      const text = input.value.trim();
+      if (!text) return; // prevent empty
+
+      const li = document.createElement("li");
+      li.dataset.id = idCounter++;
+
+      const span = document.createElement("span");
+      span.className = "text";
+      span.textContent = text;
+
+      const delBtn = document.createElement("button");
+      delBtn.textContent = "X";
+      delBtn.className = "delete-btn";
+
+      li.appendChild(span);
+      li.appendChild(delBtn);
+
+      list.appendChild(li);
+
+      input.value = "";
+    });
+
+    // -------- EVENT DELEGATION --------
+    list.addEventListener("click", (e) => {
+      const li = e.target.closest("li");
+      if (!li) return;
+
+      // DELETE
+      if (e.target.classList.contains("delete-btn")) {
+        li.remove();
+        return;
+      }
+
+      // TOGGLE COMPLETE
+      if (e.target.classList.contains("text")) {
+        li.classList.toggle("completed");
+      }
+    });
+
+    // -------- EDIT (DOUBLE CLICK) --------
+    list.addEventListener("dblclick", (e) => {
+      const textEl = e.target.closest(".text");
+      if (!textEl) return;
+
+      const li = textEl.closest("li");
+      const oldText = textEl.textContent;
+
+      const inputEdit = document.createElement("input");
+      inputEdit.value = oldText;
+
+      li.replaceChild(inputEdit, textEl);
+      inputEdit.focus();
+
+      function save() {
+        const newText = inputEdit.value.trim() || oldText;
+
+        const newSpan = document.createElement("span");
+        newSpan.className = "text";
+        newSpan.textContent = newText;
+
+        li.replaceChild(newSpan, inputEdit);
+      }
+
+      inputEdit.addEventListener("blur", save);
+      inputEdit.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") save();
+      });
+    });
+  </script>
+
+</body>
+</html>
+```

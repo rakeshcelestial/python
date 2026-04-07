@@ -1,0 +1,132 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Batch Rendering with DocumentFragment</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    button {
+      margin-right: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    #progress {
+      margin: 15px 0;
+      font-weight: bold;
+    }
+
+    ul {
+      border: 1px solid #ccc;
+      max-height: 300px;
+      overflow-y: auto;
+      padding: 10px;
+    }
+
+    li {
+      padding: 4px;
+      border-bottom: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Batch Rendering Demo</h2>
+
+  <button onclick="startBatch()">Render (Batch + Fragment)</button>
+  <button onclick="startNormal()">Render (Normal)</button>
+
+  <p id="progress">Progress: 0</p>
+
+  <ul id="list-container"></ul>
+
+  <script>
+    const items = Array.from({ length: 10000 }, (_, i) => ({
+      id: i + 1,
+      text: `Item ${i + 1}`
+    }));
+
+    // -------- BATCH VERSION --------
+    function renderList(containerId, items, batchSize) {
+      const container = document.getElementById(containerId);
+      container.textContent = "";
+
+      let index = 0;
+      const total = items.length;
+      const startTime = performance.now();
+
+      function renderBatch() {
+        const fragment = document.createDocumentFragment();
+
+        let count = 0;
+        while (index < total && count < batchSize) {
+          const item = items[index];
+
+          const li = document.createElement("li");
+          li.textContent = item.text;
+          li.dataset.id = item.id;
+
+          fragment.appendChild(li);
+
+          index++;
+          count++;
+        }
+
+        container.appendChild(fragment);
+
+        // Update progress
+        document.getElementById("progress").textContent =
+          `Rendered ${index}/${total}`;
+
+        if (index < total) {
+          requestAnimationFrame(renderBatch);
+        } else {
+          const endTime = performance.now();
+          console.log("Batch Render Time:", (endTime - startTime).toFixed(2), "ms");
+        }
+      }
+
+      requestAnimationFrame(renderBatch);
+    }
+
+    // -------- NORMAL VERSION (NO BATCH) --------
+    function renderListNormal(containerId, items) {
+      const container = document.getElementById(containerId);
+      container.textContent = "";
+
+      const startTime = performance.now();
+
+      items.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item.text;
+        li.dataset.id = item.id;
+        container.appendChild(li);
+      });
+
+      const endTime = performance.now();
+
+      document.getElementById("progress").textContent =
+        `Rendered ${items.length}/${items.length}`;
+
+      console.log("Normal Render Time:", (endTime - startTime).toFixed(2), "ms");
+    }
+
+    // Button handlers
+    function startBatch() {
+      renderList("list-container", items, 500);
+    }
+
+    function startNormal() {
+      renderListNormal("list-container", items);
+    }
+  </script>
+
+</body>
+</html>
+```

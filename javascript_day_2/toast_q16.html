@@ -1,0 +1,197 @@
+```html id="p4n8za"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Toast System</title>
+
+  <style>
+    body { font-family: Arial; padding: 20px; }
+
+    /* Container */
+    #toast-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 300px;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 10px;
+      z-index: 9999;
+    }
+
+    /* Toast */
+    .toast {
+      padding: 10px;
+      border-radius: 6px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transform: translateX(100%);
+      opacity: 0;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .toast.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .toast.hide {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    .success { background: green; }
+    .error { background: red; }
+    .info { background: blue; }
+    .warning { background: orange; }
+
+    .msg {
+      flex: 1;
+      margin-right: 10px;
+    }
+
+    .close {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Progress bar */
+    .progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: white;
+      width: 100%;
+      transition: width linear;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Toast Demo</h2>
+
+<button onclick="demo()">Show Toasts</button>
+
+<div id="toast-container"></div>
+
+<script>
+class Toast {
+  static instance;
+
+  static getInstance() {
+    if (!Toast.instance) {
+      Toast.instance = new Toast();
+    }
+    return Toast.instance;
+  }
+
+  constructor() {
+    this.container = document.getElementById("toast-container");
+    this.queue = [];
+    this.max = 5;
+  }
+
+  show(message, type = "info", duration = 3000) {
+    const toast = this.createToast(message, type, duration);
+
+    if (this.container.children.length >= this.max) {
+      this.queue.push({ message, type, duration });
+    } else {
+      this.container.appendChild(toast);
+      setTimeout(() => toast.classList.add("show"), 10);
+    }
+  }
+
+  createToast(message, type, duration) {
+    const div = document.createElement("div");
+    div.className = `toast ${type}`;
+
+    div.innerHTML = `
+      <div class="msg">${message}</div>
+      <div class="close">&times;</div>
+      <div class="progress"></div>
+    `;
+
+    const closeBtn = div.querySelector(".close");
+    const progress = div.querySelector(".progress");
+
+    let timeout, startTime, remaining = duration;
+
+    function startTimer() {
+      if (duration === 0) return;
+
+      startTime = Date.now();
+
+      progress.style.transition = `width ${remaining}ms linear`;
+      progress.style.width = "0%";
+
+      timeout = setTimeout(remove, remaining);
+    }
+
+    function pauseTimer() {
+      if (duration === 0) return;
+
+      clearTimeout(timeout);
+      const elapsed = Date.now() - startTime;
+      remaining -= elapsed;
+
+      progress.style.transition = "none";
+      progress.style.width =
+        (remaining / duration) * 100 + "%";
+    }
+
+    function resumeTimer() {
+      if (duration === 0) return;
+
+      startTimer();
+    }
+
+    function remove() {
+      div.classList.add("hide");
+      setTimeout(() => {
+        div.remove();
+        this.next();
+      }, 300);
+    }
+
+    // Bind remove to correct context
+    const boundRemove = remove.bind(this);
+
+    closeBtn.onclick = boundRemove;
+
+    div.addEventListener("mouseenter", pauseTimer);
+    div.addEventListener("mouseleave", resumeTimer);
+
+    if (duration > 0) startTimer();
+
+    return div;
+  }
+
+  next() {
+    if (this.queue.length > 0) {
+      const { message, type, duration } = this.queue.shift();
+      this.show(message, type, duration);
+    }
+  }
+}
+
+const toast = Toast.getInstance();
+
+// -------- DEMO --------
+function demo() {
+  toast.show("File saved successfully", "success", 3000);
+  toast.show("Network error occurred", "error", 5000);
+  toast.show("New message received", "info", 4000);
+  toast.show("Low disk space", "warning", 0);
+}
+</script>
+
+</body>
+</html>
+```

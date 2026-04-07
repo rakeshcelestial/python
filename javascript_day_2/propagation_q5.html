@@ -1,0 +1,126 @@
+```html id="3jv8kq"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Propagation Playground</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    #grandparent {
+      padding: 30px;
+      background: #f8c8c8;
+    }
+
+    #parent {
+      padding: 30px;
+      background: #c8e6f8;
+    }
+
+    #child {
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    #log {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      height: 200px;
+      overflow-y: auto;
+      background: #f9f9f9;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Event Propagation Playground</h2>
+
+  <div id="grandparent">
+    Grandparent
+    <div id="parent">
+      Parent
+      <button id="child">Click Me</button>
+    </div>
+  </div>
+
+  <label>
+    <input type="checkbox" id="stop-prop" />
+    Stop Propagation on Parent (Bubble)
+  </label>
+
+  <label>
+    <input type="checkbox" id="stop-imm" />
+    Stop Immediate Propagation on Parent (Bubble)
+  </label>
+
+  <button onclick="clearLog()">Clear Log</button>
+
+  <div id="log"></div>
+
+  <script>
+    const grandparent = document.getElementById("grandparent");
+    const parent = document.getElementById("parent");
+    const child = document.getElementById("child");
+
+    const stopProp = document.getElementById("stop-prop");
+    const stopImm = document.getElementById("stop-imm");
+    const logDiv = document.getElementById("log");
+
+    function log(message) {
+      const p = document.createElement("div");
+      p.textContent = message;
+      logDiv.appendChild(p);
+    }
+
+    function getPhaseName(phase) {
+      if (phase === 1) return "CAPTURE";
+      if (phase === 2) return "TARGET";
+      if (phase === 3) return "BUBBLE";
+    }
+
+    function attachListeners(element, name) {
+      // CAPTURE
+      element.addEventListener("click", (e) => {
+        log(`${getPhaseName(e.eventPhase)}: ${name}`);
+      }, { capture: true });
+
+      // BUBBLE
+      element.addEventListener("click", (e) => {
+        log(`${getPhaseName(e.eventPhase)}: ${name}`);
+
+        // Apply stopPropagation on parent (bubble phase only)
+        if (name === "parent") {
+          if (stopImm.checked) {
+            log(">> stopImmediatePropagation() called");
+            e.stopImmediatePropagation();
+          } else if (stopProp.checked) {
+            log(">> stopPropagation() called");
+            e.stopPropagation();
+          }
+        }
+      });
+    }
+
+    attachListeners(grandparent, "grandparent");
+    attachListeners(parent, "parent");
+    attachListeners(child, "child");
+
+    function clearLog() {
+      logDiv.textContent = "";
+    }
+  </script>
+
+</body>
+</html>
+```

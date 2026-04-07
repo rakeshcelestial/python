@@ -1,0 +1,128 @@
+```html id="l9q4xp"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Infinite Scroll (Throttle)</title>
+
+  <style>
+    body { font-family: Arial; padding: 20px; }
+
+    .post {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    #status {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .loading { color: blue; }
+    .error { color: red; }
+    .done { color: green; }
+  </style>
+</head>
+<body>
+
+<h2>Infinite Scroll</h2>
+
+<div id="list"></div>
+
+<div id="status"></div>
+<div id="sentinel"></div>
+
+<script>
+const list = document.getElementById("list");
+const statusBox = document.getElementById("status");
+const sentinel = document.getElementById("sentinel");
+
+let start = 0;
+const limit = 20;
+const total = 100;
+let loading = false;
+
+// -------- THROTTLE --------
+function throttle(fn, interval) {
+  let lastTime = 0;
+  return function (...args) {
+    const now = Date.now();
+    if (now - lastTime >= interval) {
+      lastTime = now;
+      fn.apply(this, args);
+    }
+  };
+}
+
+// -------- FETCH POSTS --------
+async function fetchPosts() {
+  if (loading || start >= total) return;
+
+  loading = true;
+  statusBox.innerHTML = '<span class="loading">Loading...</span>';
+
+  try {
+    const res = await fetch(
+      `https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=${limit}`
+    );
+
+    if (!res.ok) throw new Error("Fetch failed");
+
+    const data = await res.json();
+
+    renderPosts(data);
+
+    start += limit;
+
+    if (start >= total) {
+      statusBox.innerHTML = '<span class="done">All posts loaded</span>';
+      observer.disconnect();
+    } else {
+      statusBox.innerHTML = "";
+    }
+
+  } catch (err) {
+    statusBox.innerHTML = '<span class="error">Error loading</span>';
+    const btn = document.createElement("button");
+    btn.textContent = "Retry";
+    btn.onclick = fetchPosts;
+    statusBox.appendChild(btn);
+  }
+
+  loading = false;
+}
+
+// -------- RENDER --------
+function renderPosts(posts) {
+  const fragment = document.createDocumentFragment();
+
+  posts.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "post";
+    div.innerHTML = `<strong>${p.title}</strong><p>${p.body}</p>`;
+    fragment.appendChild(div);
+  });
+
+  list.appendChild(fragment);
+}
+
+// -------- OBSERVER --------
+const observer = new IntersectionObserver(
+  throttle((entries) => {
+    if (entries[0].isIntersecting) {
+      fetchPosts();
+    }
+  }, 200),
+  { rootMargin: "100px" }
+);
+
+observer.observe(sentinel);
+
+// Initial load
+fetchPosts();
+</script>
+
+</body>
+</html>
+```

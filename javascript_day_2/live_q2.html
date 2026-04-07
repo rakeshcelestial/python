@@ -1,0 +1,94 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live DOM Search Filter</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    input {
+      padding: 10px;
+      width: 300px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .card {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #no-results {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Live Search Filter</h2>
+
+  <input id="search" placeholder="Search..." />
+
+  <div id="cards">
+    <div class="card">
+      <h3>JavaScript Basics</h3>
+      <p>Learn variables and functions</p>
+    </div>
+
+    <div class="card">
+      <h3>CSS Grid</h3>
+      <p>Master grid layouts</p>
+    </div>
+
+    <div class="card">
+      <h3>React Hooks</h3>
+      <p>useState and useEffect</p>
+    </div>
+  </div>
+
+  <p id="no-results" class="hidden">No results found</p>
+
+  <script>
+    const searchInput = document.querySelector("#search");
+    const cards = document.querySelectorAll(".card");
+    const noResults = document.querySelector("#no-results");
+
+    searchInput.addEventListener("input", function () {
+      const query = searchInput.value.toLowerCase();
+      let matchCount = 0;
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+
+        if (text.includes(query)) {
+          card.classList.remove("hidden");
+          matchCount++;
+        } else {
+          card.classList.add("hidden");
+        }
+      });
+
+      // Show or hide "No results"
+      if (matchCount === 0) {
+        noResults.classList.remove("hidden");
+      } else {
+        noResults.classList.add("hidden");
+      }
+    });
+  </script>
+
+</body>
+</html>
+```

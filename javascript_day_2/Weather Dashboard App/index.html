@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nimbus — Weather Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Skip link for keyboard users -->
+  <a href="#search-input" class="skip-link">Skip to search</a>
+
+  <!-- Toast container -->
+  <div id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- Loading spinner overlay -->
+  <div id="spinner-overlay" role="status" aria-label="Loading weather data" aria-busy="false" hidden>
+    <div class="spinner" aria-hidden="true">
+      <div class="spinner__ring"></div>
+      <div class="spinner__text">Fetching weather…</div>
+    </div>
+  </div>
+
+  <!-- App Shell -->
+  <div class="app" id="app">
+
+    <!-- ── Sidebar ────────────────────────────────────────── -->
+    <aside class="sidebar" aria-label="Saved favorites">
+      <div class="sidebar__header">
+        <div class="brand" aria-label="Nimbus Weather">
+          <span class="brand__icon" aria-hidden="true">⛅</span>
+          <span class="brand__name">Nimbus</span>
+        </div>
+        <div class="sidebar__controls">
+          <button
+            id="theme-toggle"
+            class="icon-btn"
+            aria-label="Switch to light mode"
+            aria-pressed="true"
+            title="Toggle theme"
+          >☀️</button>
+          <button
+            id="unit-toggle"
+            class="icon-btn"
+            aria-label="Switch temperature unit"
+            title="Toggle °C / °F"
+          >°C</button>
+        </div>
+      </div>
+
+      <section id="favorites-section" class="favorites" aria-label="Favorite cities">
+        <h2 class="favorites__title">
+          <span aria-hidden="true">★</span> Favorites
+        </h2>
+        <p id="favorites-empty" class="favorites__empty" hidden>
+          Search for a city and star it to save favorites.
+        </p>
+        <ul
+          id="favorites-list"
+          class="favorites__list"
+          role="list"
+          aria-label="Saved cities list"
+        ></ul>
+      </section>
+    </aside>
+
+    <!-- ── Main Content ───────────────────────────────────── -->
+    <main class="main" id="main-content">
+
+      <!-- Search -->
+      <header class="search-header" role="banner">
+        <div id="search-wrapper" class="search-wrapper">
+          <label for="search-input" class="search-label">Search city</label>
+          <div class="search-bar" role="search">
+            <span class="search-bar__icon" aria-hidden="true">🔍</span>
+            <input
+              type="search"
+              id="search-input"
+              class="search-input"
+              placeholder="Search any city…"
+              autocomplete="off"
+              autocorrect="off"
+              spellcheck="false"
+              aria-label="Search for a city"
+              aria-autocomplete="list"
+              aria-controls="suggestions-dropdown"
+              aria-describedby="search-error"
+              maxlength="100"
+            />
+            <button
+              id="search-btn"
+              class="search-btn"
+              aria-label="Search weather"
+            >Search</button>
+          </div>
+          <p id="search-error" class="search-error" role="alert" hidden></p>
+        </div>
+      </header>
+
+      <!-- Weather display -->
+      <section id="weather-section" hidden aria-label="Current weather">
+        <div id="current-weather" class="current-weather"></div>
+      </section>
+
+      <!-- Hero / empty state -->
+      <div class="hero" id="hero" aria-hidden="false">
+        <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
+        <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
+        <div class="hero__orb hero__orb--3" aria-hidden="true"></div>
+        <div class="hero__content">
+          <p class="hero__icon" aria-hidden="true">🌍</p>
+          <h1 class="hero__title">What's the weather?</h1>
+          <p class="hero__sub">Search any city to see live conditions — temperature, humidity, wind and more.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

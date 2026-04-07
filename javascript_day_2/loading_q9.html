@@ -1,0 +1,186 @@
+```html id="n4c8zp"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    button {
+      padding: 8px 12px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .section {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .loading {
+      color: blue;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .card {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+<h2>User Dashboard</h2>
+
+<button id="refresh">Refresh All</button>
+<p id="time"></p>
+
+<div id="users" class="section"><h3>Users</h3><div class="content"></div></div>
+<div id="posts" class="section"><h3>Posts</h3><div class="content"></div></div>
+<div id="todos" class="section"><h3>Todos</h3><div class="content"></div></div>
+
+<script>
+const BASE = "https://jsonplaceholder.typicode.com";
+
+const sections = {
+  users: document.querySelector("#users .content"),
+  posts: document.querySelector("#posts .content"),
+  todos: document.querySelector("#todos .content")
+};
+
+function showLoading(el) {
+  el.innerHTML = '<p class="loading">Loading...</p>';
+}
+
+function showError(el, retryFn) {
+  el.innerHTML = '<p class="error">Error loading data</p>';
+  const btn = document.createElement("button");
+  btn.textContent = "Retry";
+  btn.onclick = retryFn;
+  el.appendChild(btn);
+}
+
+// -------- FETCH FUNCTIONS --------
+async function fetchUsers() {
+  const res = await fetch(`${BASE}/users`);
+  if (!res.ok) throw new Error("Users failed");
+  return res.json();
+}
+
+async function fetchPosts() {
+  const res = await fetch(`${BASE}/posts?userId=1`);
+  if (!res.ok) throw new Error("Posts failed");
+  return res.json();
+}
+
+async function fetchTodos() {
+  const res = await fetch(`${BASE}/todos?userId=1`);
+  if (!res.ok) throw new Error("Todos failed");
+  return res.json();
+}
+
+// -------- RENDER --------
+function renderUsers(data) {
+  sections.users.innerHTML = "";
+  data.forEach(u => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.textContent = `${u.name} (${u.email})`;
+    sections.users.appendChild(div);
+  });
+}
+
+function renderPosts(data) {
+  sections.posts.innerHTML = "";
+  data.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.textContent = p.title;
+    sections.posts.appendChild(div);
+  });
+}
+
+function renderTodos(data) {
+  sections.todos.innerHTML = "";
+  data.forEach(t => {
+    const div = document.createElement("div");
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = t.completed;
+
+    div.appendChild(cb);
+    div.appendChild(document.createTextNode(" " + t.title));
+    sections.todos.appendChild(div);
+  });
+}
+
+// -------- LOAD SECTION --------
+async function loadSection(fetchFn, renderFn, el, retryFn) {
+  showLoading(el);
+  try {
+    const data = await fetchFn();
+    renderFn(data);
+  } catch (err) {
+    showError(el, retryFn);
+  }
+}
+
+// -------- LOAD ALL --------
+async function loadAll() {
+  const start = performance.now();
+
+  // Show loading for all
+  Object.values(sections).forEach(showLoading);
+
+  const results = await Promise.allSettled([
+    fetchUsers(),
+    fetchPosts(),
+    fetchTodos()
+  ]);
+
+  // USERS
+  if (results[0].status === "fulfilled") {
+    renderUsers(results[0].value);
+  } else {
+    showError(sections.users, () => loadSection(fetchUsers, renderUsers, sections.users, () => loadSection(fetchUsers, renderUsers, sections.users)));
+  }
+
+  // POSTS
+  if (results[1].status === "fulfilled") {
+    renderPosts(results[1].value);
+  } else {
+    showError(sections.posts, () => loadSection(fetchPosts, renderPosts, sections.posts, () => loadSection(fetchPosts, renderPosts, sections.posts)));
+  }
+
+  // TODOS
+  if (results[2].status === "fulfilled") {
+    renderTodos(results[2].value);
+  } else {
+    showError(sections.todos, () => loadSection(fetchTodos, renderTodos, sections.todos, () => loadSection(fetchTodos, renderTodos, sections.todos)));
+  }
+
+  const end = performance.now();
+  document.getElementById("time").textContent =
+    `Total Load Time: ${(end - start).toFixed(2)} ms`;
+}
+
+// -------- REFRESH BUTTON --------
+document.getElementById("refresh").addEventListener("click", loadAll);
+
+// Initial load
+loadAll();
+</script>
+
+</body>
+</html>
+```
