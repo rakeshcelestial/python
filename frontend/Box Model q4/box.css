@@ -1,0 +1,53 @@
+/* 
+Why border-box is preferred:
+
+With border-box, width includes padding and border.
+This makes layout easier and predictable because
+the total size of the element does not grow unexpectedly.
+*/
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* Container to place boxes side by side */
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Common box styles */
+.box {
+    width: 300px;
+    padding: 20px;
+    border: 5px solid black;
+    margin: 10px;
+    text-align: center;
+}
+
+/* Content-box */
+.content-box {
+    box-sizing: content-box;
+    background-color: lightcoral;
+}
+
+/* Border-box */
+.border-box {
+    box-sizing: border-box;
+    background-color: lightgreen;
+}
+
+/* Labels section */
+.labels {
+    max-width: 600px;
+    margin: auto;
+    font-size: 16px;
+    line-height: 1.6;
+}

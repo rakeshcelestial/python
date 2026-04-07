@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* =========================
+   Grid Container
+   ========================= */
+.gallery {
+    display: grid;
+
+    /* Auto-responsive magic */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+    gap: 15px;
+}
+
+/* =========================
+   Cards
+   ========================= */
+.card {
+    border-radius: 12px;
+    transition: transform 0.3s;
+    
+    /* Fixed aspect ratio */
+    aspect-ratio: 1 / 1;
+}
+
+/* Hover effect */
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* =========================
+   Span Variations
+   ========================= */
+.span-col {
+    grid-column: span 2;
+}
+
+.span-row {
+    grid-row: span 2;
+}
+
+/* =========================
+   Colors (placeholders)
+   ========================= */
+.c1 { background: #ff6b6b; }
+.c2 { background: #6bc5ff; }
+.c3 { background: #ffd93d; }
+.c4 { background: #6bff95; }
+.c5 { background: #c56bff; }
+.c6 { background: #ff9f6b; }
+.c7 { background: #6bfff5; }
+.c8 { background: #ff6bd6; }
+.c9 { background: #8dff6b; }
+.c10 { background: #6b8dff; }
+.c11 { background: #ffc06b; }
+.c12 { background: #ff6b8d; }

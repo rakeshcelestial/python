@@ -1,0 +1,164 @@
+/* =========================
+   Base
+   ========================= */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  padding: 20px;
+}
+
+.wrapper {
+  max-width: 600px;
+  margin: auto;
+}
+
+.block {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* =========================
+   1. Spinner
+   ========================= */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top: 5px solid transparent;
+  border-radius: 50%;
+
+  animation: spin 1s linear infinite;
+}
+
+/* Keyframes */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================
+   2. Bouncing Dots
+   ========================= */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.dots span {
+  width: 12px;
+  height: 12px;
+  background: #333;
+  border-radius: 50%;
+
+  animation: bounce 0.6s infinite ease-in-out;
+}
+
+/* Stagger effect */
+.dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Keyframes */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+/* =========================
+   3. Skeleton (Shimmer)
+   ========================= */
+.skeleton-card {
+  width: 250px;
+  margin: auto;
+}
+
+.sk-image,
+.sk-line {
+  background: #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shapes */
+.sk-image {
+  height: 120px;
+}
+
+.sk-line {
+  height: 12px;
+}
+
+.sk-line.short {
+  width: 60%;
+}
+
+/* Shimmer animation */
+.sk-image::after,
+.sk-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+
+  transform: translateX(-100%);
+  animation: shimmer 1.5s infinite;
+}
+
+/* Keyframes */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* =========================
+   4. Progress Bar
+   ========================= */
+.progress {
+  width: 100%;
+  height: 12px;
+  background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #2563eb;
+
+  animation: load 3s infinite ease;
+}
+
+/* Keyframes */
+@keyframes load {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}

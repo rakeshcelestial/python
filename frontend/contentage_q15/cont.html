@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="cont.css"/>
+</head>
+<body>
+
+<header class="nav">
+  <div class="logo">MySite</div>
+  <nav class="links">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="#" class="btn">Login</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Get In Touch With Us</h1>
+    <p>We’d love to hear from you</p>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact">
+
+    <!-- Form -->
+    <form class="form">
+      <h2>Contact Form</h2>
+
+      <label for="name">Name</label>
+      <input id="name" type="text" required minlength="3">
+
+      <label for="email">Email</label>
+      <input id="email" type="email" required>
+
+      <label for="subject">Subject</label>
+      <input id="subject" type="text" required minlength="3">
+
+      <label for="message">Message</label>
+      <textarea id="message" required minlength="10"></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <!-- Info Cards -->
+    <div class="info">
+
+      <article class="card">
+        <span class="icon">📞</span>
+        <h3>Phone</h3>
+        <p>+91 9876543210</p>
+      </article>
+
+      <article class="card">
+        <span class="icon">✉️</span>
+        <h3>Email</h3>
+        <p>support@example.com</p>
+      </article>
+
+      <article class="card">
+        <span class="icon">📍</span>
+        <h3>Address</h3>
+        <p>Bangalore, India</p>
+      </article>
+
+      <article class="card">
+        <span class="icon">⏰</span>
+        <h3>Hours</h3>
+        <p>Mon - Fri: 9AM - 6PM</p>
+      </article>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 MySite</p>
+</footer>
+
+</body>
+</html>

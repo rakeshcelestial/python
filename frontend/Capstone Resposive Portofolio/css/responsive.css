@@ -1,0 +1,243 @@
+/* ============================================================
+   RESPONSIVE.CSS — Mobile-First Media Queries
+   Breakpoints: 768px (tablet), 1024px (desktop)
+   ============================================================ */
+
+/* ── Base (Mobile) — already set in other files ── */
+
+/* ── Mobile specific overrides ── */
+.nav-links {
+  display: none;
+}
+
+.timeline::before {
+  left: 24px;
+}
+
+.timeline-entry {
+  grid-template-columns: 48px 1fr;
+  grid-template-rows: auto;
+  margin-bottom: var(--space-8);
+}
+
+.timeline-entry:nth-child(odd) .timeline-card,
+.timeline-entry:nth-child(even) .timeline-card {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: left;
+  margin-right: 0;
+  margin-left: var(--space-4);
+}
+
+.timeline-entry:nth-child(odd) .timeline-dot,
+.timeline-entry:nth-child(even) .timeline-dot {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.timeline-entry .timeline-empty {
+  display: none;
+}
+
+.about-grid {
+  grid-template-areas:
+    "image"
+    "content"
+    "skills";
+  grid-template-columns: 1fr;
+}
+
+.about-image-area {
+  max-width: 300px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.skill-bars {
+  grid-template-columns: 1fr;
+}
+
+.contact-grid {
+  grid-template-areas:
+    "form"
+    "details";
+  grid-template-columns: 1fr;
+}
+
+.testimonials-row {
+  flex-direction: column;
+}
+
+.testimonial-card:nth-child(2) {
+  margin-top: 0;
+}
+
+.footer-inner {
+  flex-direction: column;
+  gap: var(--space-10);
+  padding: var(--space-10) var(--space-6);
+}
+
+.footer-bottom {
+  flex-direction: column;
+  gap: var(--space-2);
+  text-align: center;
+  padding: var(--space-5) var(--space-6);
+}
+
+.project-card.featured {
+  grid-column: span 1;
+}
+
+.hero-name {
+  font-size: clamp(var(--text-3xl), 10vw, var(--text-5xl));
+}
+
+.section-title {
+  font-size: var(--text-3xl);
+}
+
+.nav {
+  padding: 0 var(--space-5);
+}
+
+.section {
+  padding: var(--space-16) var(--space-5);
+}
+
+.about-stats {
+  gap: var(--space-6);
+}
+
+/* ── Tablet (768px+) ── */
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+  }
+
+  .timeline::before {
+    left: 50%;
+  }
+
+  .timeline-entry {
+    display: grid;
+    grid-template-columns: 1fr var(--space-12) 1fr;
+    grid-template-rows: auto;
+    margin-bottom: var(--space-12);
+  }
+
+  .timeline-entry:nth-child(odd) .timeline-card {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: right;
+    margin-right: var(--space-6);
+    margin-left: 0;
+  }
+
+  .timeline-entry:nth-child(odd) .timeline-dot {
+    grid-column: 2;
+  }
+
+  .timeline-entry:nth-child(even) .timeline-card {
+    grid-column: 3;
+    grid-row: 1;
+    margin-left: var(--space-6);
+    margin-right: 0;
+    text-align: left;
+  }
+
+  .timeline-entry:nth-child(even) .timeline-dot {
+    grid-column: 2;
+  }
+
+  .timeline-entry .timeline-empty {
+    display: block;
+  }
+
+  .testimonials-row {
+    flex-direction: row;
+  }
+
+  .testimonial-card:nth-child(2) {
+    margin-top: var(--space-6);
+  }
+
+  .footer-inner {
+    flex-direction: row;
+    gap: var(--space-8);
+    padding: var(--space-12) var(--space-8);
+  }
+
+  .footer-bottom {
+    flex-direction: row;
+    text-align: left;
+    padding: var(--space-5) var(--space-8);
+  }
+
+  .contact-grid {
+    grid-template-areas: "form details";
+    grid-template-columns: 1fr 340px;
+  }
+
+  .about-grid {
+    grid-template-areas:
+      "image content"
+      "skills skills";
+    grid-template-columns: 280px 1fr;
+  }
+
+  .about-image-area {
+    max-width: none;
+    margin: 0;
+  }
+
+  .skill-bars {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .project-card.featured {
+    grid-column: span 2;
+  }
+
+  .section {
+    padding: var(--space-20) var(--space-8);
+  }
+}
+
+/* ── Desktop (1024px+) ── */
+@media (min-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 340px 1fr;
+    gap: var(--space-12) var(--space-16);
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr 380px;
+    gap: var(--space-12);
+  }
+
+  .section {
+    padding: var(--space-24) var(--space-8);
+  }
+
+  .section-title {
+    font-size: var(--text-4xl);
+  }
+}
+
+/* ── Wide (1280px+) ── */
+@media (min-width: 1280px) {
+  .section {
+    padding: var(--space-24) var(--space-6);
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

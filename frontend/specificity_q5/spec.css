@@ -1,0 +1,55 @@
+/* 
+Specificity format: (Inline, ID, Class, Element)
+Example: 0-1-1 = 0 inline, 1 id, 1 class/element
+*/
+
+/* Specificity: 0-0-1 */
+li {
+    font-size: 16px;
+    color: gray;
+    transition: transform 0.2s;
+}
+
+/* Specificity: 0-1-0 */
+.highlight {
+    color: blue;
+}
+
+/* Specificity: 0-1-0 (ID has higher weight than class) */
+#special {
+    color: red;
+    font-weight: bold;
+}
+
+/* Specificity: 0-1-1 */
+li:nth-child(even) {
+    background-color: lightyellow;
+}
+
+/* Specificity: 0-1-1 */
+li:nth-child(odd) {
+    background-color: lightgray;
+}
+
+/* Specificity: 0-1-1 */
+li:first-child {
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+/* Specificity: 0-1-1 */
+li:last-child {
+    font-style: italic;
+}
+
+/* Specificity: 0-1-1 */
+li:hover {
+    text-decoration: underline;
+    transform: scale(1.02);
+}
+
+/* Specificity: 0-1-2 */
+/* This overrides .highlight (0-1-0) because it's more specific */
+ul li.highlight {
+    color: purple;
+}

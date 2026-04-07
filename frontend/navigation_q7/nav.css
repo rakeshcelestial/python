@@ -1,0 +1,99 @@
+/* Base styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* =========================
+   Navbar Container
+   ========================= */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* left, center, right */
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #333;
+    color: white;
+}
+
+/* Logo */
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* =========================
+   Nav Links
+   ========================= */
+.nav-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* allows wrapping */
+    justify-content: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    position: relative;
+    transition: color 0.3s;
+}
+
+/* Hover effect */
+.nav-links a:hover {
+    color: #00bcd4;
+}
+
+/* Underline animation */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #00bcd4;
+    left: 0;
+    bottom: -3px;
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* =========================
+   Sign Up Button
+   ========================= */
+.signup a {
+    text-decoration: none;
+    color: white;
+    background: #00bcd4;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.signup a:hover {
+    background: #0097a7;
+}
+
+/* =========================
+   Mobile (<=768px)
+   ========================= */
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column; /* stack vertically */
+        align-items: center;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .signup {
+        width: 100%;
+        text-align: center;
+    }
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quarterly Sales Report</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        caption {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        /* Right align numbers */
+        td {
+            text-align: right;
+        }
+
+        /* Left align headers */
+        th {
+            text-align: left;
+        }
+
+        /* Alternating row colors */
+        tbody tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+        thead {
+            background-color: #ddd;
+        }
+
+        tfoot {
+            background-color: #eee;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+
+    <caption>Quarterly Sales Report</caption>
+
+    <!-- Table Header -->
+    <thead>
+        <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Q1</th>
+            <th scope="col">Q2</th>
+            <th scope="col">Q3</th>
+            <th scope="col">Q4</th>
+            <th scope="col">Total</th>
+        </tr>
+    </thead>
+
+    <!-- Table Body -->
+    <tbody>
+        <tr>
+            <th scope="row">Alpha</th>
+            <td>1200</td>
+            <td>1500</td>
+            <td>1700</td>
+            <td>1600</td>
+            <td>6000</td>
+        </tr>
+
+        <tr>
+            <th scope="row">Beta</th>
+            <td>1000</td>
+            <td>1400</td>
+            <td>1300</td>
+            <td>1500</td>
+            <td>5200</td>
+        </tr>
+
+        <tr>
+            <th scope="row">Gamma</th>
+            <td>900</td>
+            <td>1100</td>
+            <td>1200</td>
+            <td>1300</td>
+            <td>4500</td>
+        </tr>
+
+        <!-- Total Row (merged cells example) -->
+        <tr>
+            <th scope="row">Total</th>
+            <td colspan="5">Summary of all products across quarters</td>
+        </tr>
+    </tbody>
+
+    <!-- Table Footer -->
+    <tfoot>
+        <tr>
+            <th scope="row" colspan="5">Grand Total</th>
+            <td>15700</td>
+        </tr>
+    </tfoot>
+
+</table>
+
+</body>
+</html>

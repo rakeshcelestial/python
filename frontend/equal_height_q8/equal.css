@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* =========================
+   Container
+   ========================= */
+.card-container {
+    display: flex;
+    flex-wrap: wrap; /* enables responsiveness */
+    gap: 20px; /* spacing between cards */
+}
+
+/* =========================
+   Card
+   ========================= */
+.card {
+    display: flex;
+    flex-direction: column; /* vertical layout */
+    
+    flex: 1 1 calc(33.333% - 20px); /* 3 per row */
+    
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    background: white;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+/* Equal height happens automatically in flex rows */
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Image placeholder */
+.image {
+    height: 150px;
+    background: lightblue;
+    border-radius: 8px;
+}
+
+/* Description grows */
+.desc {
+    flex-grow: 1; /* pushes button down */
+}
+
+/* Price */
+.price {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Button */
+button {
+    padding: 10px;
+    border: none;
+    background: blue;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: darkblue;
+}
+
+/* =========================
+   Tablet (2 cards)
+   ========================= */
+@media (max-width: 1024px) {
+    .card {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+/* =========================
+   Mobile (1 card)
+   ========================= */
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 100%;
+    }
+}

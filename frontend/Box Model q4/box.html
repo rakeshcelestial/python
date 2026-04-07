@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model Explorer</title>
+    <link rel="stylesheet" href="box.css">
+</head>
+<body>
+
+<main>
+    <h1>Box Model Explorer</h1>
+
+    <section class="container">
+
+        <!-- Box 1 -->
+        <article class="box content-box">
+            <h2>Content-Box</h2>
+            <p>This box uses <strong>box-sizing: content-box</strong></p>
+        </article>
+
+        <!-- Box 2 -->
+        <article class="box border-box">
+            <h2>Border-Box</h2>
+            <p>This box uses <strong>box-sizing: border-box</strong></p>
+        </article>
+
+    </section>
+
+    <!-- Labels -->
+    <section class="labels">
+
+        <p>
+            <strong>Box 1 (content-box):</strong><br>
+            Rendered width = 350px<br>
+            (300 + 20 + 20 + 5 + 5)
+        </p>
+
+        <p>
+            <strong>Box 2 (border-box):</strong><br>
+            Rendered width = 300px<br>
+            (content shrinks to 250px inside)
+        </p>
+
+    </section>
+
+</main>
+
+</body>
+</html>

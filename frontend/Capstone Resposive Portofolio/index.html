@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Alex Mercer — Full-Stack Designer & Developer crafting digital experiences at the intersection of design and code." />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Alex Mercer — Designer & Developer" />
+  <meta property="og:description" content="Full-Stack Designer & Developer crafting digital experiences." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://alexmercer.dev" />
+
+  <title>Alex Mercer — Designer & Developer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════
+       SKIP NAVIGATION
+  ══════════════════════════════════════════════════ -->
+  <a class="skip-nav" href="#main-content">Skip to main content</a>
+
+  <!-- ══════════════════════════════════════════════════
+       HEADER / NAV
+  ══════════════════════════════════════════════════ -->
+  <header class="site-header" role="banner">
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#hero" class="nav-logo" aria-label="Alex Mercer — home">
+        Alex<span>.</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#about"        class="nav-link">About</a></li>
+        <li><a href="#projects"     class="nav-link">Projects</a></li>
+        <li><a href="#experience"   class="nav-link">Experience</a></li>
+        <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+        <li><a href="#contact"      class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button
+          class="theme-toggle"
+          aria-label="Toggle dark/light theme"
+          onclick="document.body.classList.toggle('dark-theme')"
+        >
+          ☽
+        </button>
+        <a href="#contact" class="btn btn-primary btn-sm">Hire Me</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════
+       MAIN CONTENT
+  ══════════════════════════════════════════════════ -->
+  <main id="main-content">
+
+    <!-- ────────────────────────────────────────────
+         1. HERO SECTION
+    ──────────────────────────────────────────── -->
+    <section id="hero" class="hero" aria-labelledby="hero-heading">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-deco-ring"></div>
+      </div>
+
+      <div class="hero-content">
+        <p class="hero-tagline" aria-hidden="true">Available for freelance work</p>
+
+        <h1 class="hero-name" id="hero-heading">
+          Rakesh<br /><em>Ponnala.</em>
+        </h1>
+
+        <p class="hero-role">Full-Stack Designer &amp; Developer</p>
+
+        <p class="hero-desc">
+          I craft purposeful digital experiences where visual craft meets engineering precision — building interfaces that are both beautiful and blazing fast.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#contact"  class="btn btn-secondary">Get in Touch</a>
+        </div>
+      </div>
+
+      <div class="scroll-indicator" aria-hidden="true">
+        <span>Scroll</span>
+        <span class="scroll-indicator-arrow">↓</span>
+      </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────
+         2. ABOUT SECTION
+    ──────────────────────────────────────────── -->
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <p class="section-label">About Me</p>
+          <h2 class="section-title" id="about-heading">
+            Designing with <em>intention</em>
+          </h2>
+        </header>
+
+        <div class="about-grid">
+
+          <!-- Image -->
+          <div class="about-image-area">
+            <figure class="about-image-placeholder" role="img" aria-label="Portrait of Alex Mercer">
+              <div class="about-image-badge">Est. 2016</div>
+            </figure>
+          </div>
+
+          <!-- Content -->
+          <div class="about-content">
+            <p class="about-text">
+              I'm a designer and developer based in San Francisco with 8+ years of experience building products used by millions. I specialize in bridging the gap between design and engineering — fluent in both Figma and TypeScript.
+            </p>
+            <p class="about-text">
+              My work spans from zero-to-one startups finding product-market fit, to established companies scaling design systems. I believe great software is humane, fast, and quietly confident.
+            </p>
+
+            <div class="about-stats" role="list" aria-label="Career statistics">
+              <div role="listitem">
+                <span class="stat-number">8+</span>
+                <span class="stat-label">Years Experience</span>
+              </div>
+              <div role="listitem">
+                <span class="stat-number">40+</span>
+                <span class="stat-label">Projects Shipped</span>
+              </div>
+              <div role="listitem">
+                <span class="stat-number">12</span>
+                <span class="stat-label">Awards Won</span>
+              </div>
+            </div>
+
+            <div class="hero-cta">
+              <a href="#projects"  class="btn btn-primary">See Projects</a>
+              <a href="resume.pdf" class="btn btn-secondary" aria-label="Download resume PDF">Download CV</a>
+            </div>
+          </div>
+
+          <!-- Skills -->
+          <div class="about-skills">
+            <p class="skills-section-title">Skill Proficiency</p>
+            <div class="skill-bars" role="list" aria-label="Skill levels">
+
+              <div class="skill-item" role="listitem">
+                <div class="skill-header">
+                  <span class="skill-name">UI/UX Design</span>
+                  <span class="skill-pct">95%</span>
+                </div>
+                <div class="skill-track" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" aria-label="UI/UX Design skill level 95%">
+                  <div class="skill-bar-fill" style="width: 95%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item" role="listitem">
+                <div class="skill-header">
+                  <span class="skill-name">React / TypeScript</span>
+                  <span class="skill-pct">90%</span>
+                </div>
+                <div class="skill-track" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="React TypeScript skill level 90%">
+                  <div class="skill-bar-fill" style="width: 90%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item" role="listitem">
+                <div class="skill-header">
+                  <span class="skill-name">CSS / Animation</span>
+                  <span class="skill-pct">92%</span>
+                </div>
+                <div class="skill-track" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" aria-label="CSS Animation skill level 92%">
+                  <div class="skill-bar-fill" style="width: 92%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item" role="listitem">
+                <div class="skill-header">
+                  <span class="skill-name">Node.js / APIs</span>
+                  <span class="skill-pct">82%</span>
+                </div>
+                <div class="skill-track" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" aria-label="Node.js APIs skill level 82%">
+                  <div class="skill-bar-fill" style="width: 82%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item" role="listitem">
+                <div class="skill-header">
+                  <span class="skill-name">Figma / Design Systems</span>
+                  <span class="skill-pct">97%</span>
+                </div>
+                <div class="skill-track" role="progressbar" aria-valuenow="97" aria-valuemin="0" aria-valuemax="100" aria-label="Figma Design Systems skill level 97%">
+                  <div class="skill-bar-fill" style="width: 97%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item" role="listitem">
+                <div class="skill-header">
+                  <span class="skill-name">PostgreSQL / Databases</span>
+                  <span class="skill-pct">75%</span>
+                </div>
+                <div class="skill-track" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="PostgreSQL Databases skill level 75%">
+                  <div class="skill-bar-fill" style="width: 75%"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────
+         3. PROJECTS SECTION
+    ──────────────────────────────────────────── -->
+    <section id="projects" class="section" style="background: var(--color-surface);" aria-labelledby="projects-heading">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <p class="section-label">Selected Work</p>
+          <h2 class="section-title" id="projects-heading">
+            Projects that <em>matter</em>
+          </h2>
+        </header>
+
+        <div class="projects-grid">
+
+          <!-- Featured Card (spans 2 cols) -->
+          <article class="project-card featured" aria-label="Project: Lumina Design System">
+            <div class="project-img" aria-hidden="true">
+              <div class="project-img-inner">◈</div>
+              <span class="project-num">01</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Lumina Design System</h3>
+              <p class="project-desc">
+                A comprehensive design system powering 12 products at a Series B fintech. Includes 200+ components, token architecture, Figma libraries, and full documentation. Reduced design-to-dev handoff time by 60%.
+              </p>
+              <ul class="project-tags" aria-label="Technologies used">
+                <li><span class="tag">Figma</span></li>
+                <li><span class="tag">React</span></li>
+                <li><span class="tag">Storybook</span></li>
+                <li><span class="tag">TypeScript</span></li>
+                <li><span class="tag">CSS Variables</span></li>
+              </ul>
+              <a href="#" class="btn btn-primary btn-sm" aria-label="View Lumina Design System project">View Project →</a>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="project-card" aria-label="Project: Orbit Analytics Dashboard">
+            <div class="project-img" aria-hidden="true">
+              <div class="project-img-inner">⬡</div>
+              <span class="project-num">02</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Orbit Analytics</h3>
+              <p class="project-desc">Real-time analytics dashboard for B2B SaaS with complex data visualization, custom charting, and live WebSocket feeds.</p>
+              <ul class="project-tags" aria-label="Technologies used">
+                <li><span class="tag">React</span></li>
+                <li><span class="tag">D3.js</span></li>
+                <li><span class="tag">WebSockets</span></li>
+              </ul>
+              <a href="#" class="btn btn-secondary btn-sm">View Project →</a>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="project-card" aria-label="Project: Haven Mobile App">
+            <div class="project-img" aria-hidden="true">
+              <div class="project-img-inner">△</div>
+              <span class="project-num">03</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Haven Mobile App</h3>
+              <p class="project-desc">Mental wellness app with habit tracking, guided meditation, and personalized insights. 50k+ downloads in 3 months post-launch.</p>
+              <ul class="project-tags" aria-label="Technologies used">
+                <li><span class="tag">React Native</span></li>
+                <li><span class="tag">Expo</span></li>
+                <li><span class="tag">Firebase</span></li>
+              </ul>
+              <a href="#" class="btn btn-secondary btn-sm">View Project →</a>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="project-card" aria-label="Project: Prism E-Commerce Platform">
+            <div class="project-img" aria-hidden="true">
+              <div class="project-img-inner">◇</div>
+              <span class="project-num">04</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Prism E-Commerce</h3>
+              <p class="project-desc">Headless commerce platform built for a luxury fashion brand. Custom CMS, 3D product viewer, and AI-powered recommendations.</p>
+              <ul class="project-tags" aria-label="Technologies used">
+                <li><span class="tag">Next.js</span></li>
+                <li><span class="tag">Shopify</span></li>
+                <li><span class="tag">Three.js</span></li>
+              </ul>
+              <a href="#" class="btn btn-secondary btn-sm">View Project →</a>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="project-card" aria-label="Project: Vektor API Platform">
+            <div class="project-img" aria-hidden="true">
+              <div class="project-img-inner">⬢</div>
+              <span class="project-num">05</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Vektor API Platform</h3>
+              <p class="project-desc">Developer-facing API documentation and playground. Interactive code samples, authentication flows, and a real-time API tester.</p>
+              <ul class="project-tags" aria-label="Technologies used">
+                <li><span class="tag">Astro</span></li>
+                <li><span class="tag">Node.js</span></li>
+                <li><span class="tag">OpenAPI</span></li>
+              </ul>
+              <a href="#" class="btn btn-secondary btn-sm">View Project →</a>
+            </div>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="project-card" aria-label="Project: Chronicle CMS">
+            <div class="project-img" aria-hidden="true">
+              <div class="project-img-inner">☷</div>
+              <span class="project-num">06</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Chronicle CMS</h3>
+              <p class="project-desc">Block-based content management system for editorial teams. Collaborative editing, version history, and granular role permissions.</p>
+              <ul class="project-tags" aria-label="Technologies used">
+                <li><span class="tag">React</span></li>
+                <li><span class="tag">ProseMirror</span></li>
+                <li><span class="tag">PostgreSQL</span></li>
+              </ul>
+              <a href="#" class="btn btn-secondary btn-sm">View Project →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────
+         4. EXPERIENCE / TIMELINE SECTION
+    ──────────────────────────────────────────── -->
+    <section id="experience" class="section" aria-labelledby="experience-heading">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <p class="section-label">Career</p>
+          <h2 class="section-title" id="experience-heading">
+            Where I've <em>worked</em>
+          </h2>
+        </header>
+
+        <div class="timeline" role="list" aria-label="Work history timeline">
+
+          <!-- Entry 1 -->
+          <div class="timeline-entry" role="listitem">
+            <div class="timeline-card">
+              <p class="timeline-date">2022 — Present</p>
+              <h3 class="timeline-role">Lead Product Designer</h3>
+              <p class="timeline-company">Meridian Labs</p>
+              <p class="timeline-desc">Leading the design function across 4 product lines. Built and scaled a design system from scratch, managed a team of 6 designers, and drove a 40% increase in user satisfaction scores.</p>
+            </div>
+            <div class="timeline-dot" aria-hidden="true">
+              <div class="timeline-dot-inner"></div>
+            </div>
+            <div class="timeline-empty" aria-hidden="true"></div>
+          </div>
+
+          <!-- Entry 2 -->
+          <div class="timeline-entry" role="listitem">
+            <div class="timeline-empty" aria-hidden="true"></div>
+            <div class="timeline-dot" aria-hidden="true">
+              <div class="timeline-dot-inner"></div>
+            </div>
+            <div class="timeline-card">
+              <p class="timeline-date">2020 — 2022</p>
+              <h3 class="timeline-role">Senior Frontend Engineer</h3>
+              <p class="timeline-company">Volta Systems</p>
+              <p class="timeline-desc">Architected the frontend for a next-gen energy management platform. Owned performance optimization, reducing bundle size by 55% and achieving a 99 Lighthouse performance score.</p>
+            </div>
+          </div>
+
+          <!-- Entry 3 -->
+          <div class="timeline-entry" role="listitem">
+            <div class="timeline-card">
+              <p class="timeline-date">2018 — 2020</p>
+              <h3 class="timeline-role">UI/UX Designer</h3>
+              <p class="timeline-company">Beacon Creative Studio</p>
+              <p class="timeline-desc">Designed brand identities and digital products for clients including Fortune 500 companies. Specialized in e-commerce and SaaS product design, shipping 15+ major projects.</p>
+            </div>
+            <div class="timeline-dot" aria-hidden="true">
+              <div class="timeline-dot-inner"></div>
+            </div>
+            <div class="timeline-empty" aria-hidden="true"></div>
+          </div>
+
+          <!-- Entry 4 -->
+          <div class="timeline-entry" role="listitem">
+            <div class="timeline-empty" aria-hidden="true"></div>
+            <div class="timeline-dot" aria-hidden="true">
+              <div class="timeline-dot-inner"></div>
+            </div>
+            <div class="timeline-card">
+              <p class="timeline-date">2016 — 2018</p>
+              <h3 class="timeline-role">Junior Web Developer</h3>
+              <p class="timeline-company">Sprout Agency</p>
+              <p class="timeline-desc">Built responsive marketing sites and interactive landing pages. Collaborated closely with the design team, sparking my passion for the intersection of design and engineering.</p>
+            </div>
+          </div>
+
+          <!-- Entry 5 -->
+          <div class="timeline-entry" role="listitem">
+            <div class="timeline-card">
+              <p class="timeline-date">2015 — 2016</p>
+              <h3 class="timeline-role">Design Intern</h3>
+              <p class="timeline-company">Pixel Republic</p>
+              <p class="timeline-desc">First professional experience in digital design. Assisted senior designers on mobile app projects and learned the foundational principles of user-centered design.</p>
+            </div>
+            <div class="timeline-dot" aria-hidden="true">
+              <div class="timeline-dot-inner"></div>
+            </div>
+            <div class="timeline-empty" aria-hidden="true"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────
+         5. TESTIMONIALS SECTION
+    ──────────────────────────────────────────── -->
+    <section id="testimonials" class="section" style="background: var(--color-surface);" aria-labelledby="testimonials-heading">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <p class="section-label">Testimonials</p>
+          <h2 class="section-title" id="testimonials-heading">
+            What people <em>say</em>
+          </h2>
+        </header>
+
+        <div class="testimonials-row" role="list">
+
+          <article class="testimonial-card" role="listitem" aria-label="Testimonial from Sarah Chen">
+            <blockquote>
+              <p class="testimonial-quote">
+                Alex has a rare ability to think both as a designer and an engineer. The design system he built for us has become the foundation everything is built on — it's genuinely world-class work.
+              </p>
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">S</div>
+              <div>
+                <p class="author-name">Sarah Chen</p>
+                <p class="author-role">VP Product, Meridian Labs</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card" role="listitem" aria-label="Testimonial from Marcus Webb">
+            <blockquote>
+              <p class="testimonial-quote">
+                Working with Alex was a revelation. He delivered work that was not only visually stunning but technically impeccable. Our conversion rates went up 28% after the redesign. Highly recommend.
+              </p>
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">M</div>
+              <div>
+                <p class="author-name">Marcus Webb</p>
+                <p class="author-role">CEO, Prism Commerce</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card" role="listitem" aria-label="Testimonial from Lena Fischer">
+            <blockquote>
+              <p class="testimonial-quote">
+                Alex approaches every project with genuine curiosity and care. He asks the right questions, challenges assumptions thoughtfully, and ultimately delivers work that exceeds expectations every time.
+              </p>
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">L</div>
+              <div>
+                <p class="author-name">Lena Fischer</p>
+                <p class="author-role">Design Director, Beacon Studio</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────
+         6. CONTACT SECTION
+    ──────────────────────────────────────────── -->
+    <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <p class="section-label">Get In Touch</p>
+          <h2 class="section-title" id="contact-heading">
+            Let's work <em>together</em>
+          </h2>
+        </header>
+
+        <div class="contact-grid">
+
+          <!-- Contact Form -->
+          <div class="contact-form-area">
+            <form
+              action="#"
+              method="POST"
+              novalidate
+              aria-label="Contact form"
+            >
+              <fieldset>
+                <legend class="visually-hidden">Contact Information</legend>
+
+                <div class="form-group">
+                  <label for="name" class="form-label">
+                    Full Name <abbr title="required" aria-label="required">*</abbr>
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="form-control"
+                    placeholder="Jane Smith"
+                    required
+                    autocomplete="name"
+                    aria-required="true"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="email" class="form-label">
+                    Email Address <abbr title="required" aria-label="required">*</abbr>
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="jane@company.com"
+                    required
+                    autocomplete="email"
+                    aria-required="true"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="subject" class="form-label">
+                    Subject <abbr title="required" aria-label="required">*</abbr>
+                  </label>
+                  <select
+                    id="subject"
+                    name="subject"
+                    class="form-control"
+                    required
+                    aria-required="true"
+                  >
+                    <option value="" disabled selected>Select a topic…</option>
+                    <option value="project">New Project Inquiry</option>
+                    <option value="fulltime">Full-Time Opportunity</option>
+                    <option value="consulting">Design Consulting</option>
+                    <option value="speaking">Speaking / Workshop</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="message" class="form-label">
+                    Message <abbr title="required" aria-label="required">*</abbr>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    class="form-control"
+                    placeholder="Tell me about your project, timeline, and budget…"
+                    required
+                    rows="5"
+                    aria-required="true"
+                  ></textarea>
+                </div>
+
+              </fieldset>
+
+              <button type="submit" class="btn-submit" aria-label="Send message">
+                Send Message ↗
+              </button>
+
+            </form>
+          </div>
+
+          <!-- Contact Details -->
+          <div class="contact-details-area">
+            <div class="contact-details">
+              <h3 class="contact-details-title">Let's talk</h3>
+              <p class="contact-details-sub">
+                I'm currently available for freelance projects and full-time opportunities. Response time is typically within 24 hours.
+              </p>
+
+              <ul class="contact-info-list" aria-label="Contact information">
+                <li class="contact-info-item">
+                  <span class="contact-icon" aria-hidden="true">✉</span>
+                  <a href="mailto:hello@alexmercer.dev">hello@alexmercer.dev</a>
+                </li>
+                <li class="contact-info-item">
+                  <span class="contact-icon" aria-hidden="true">☎</span>
+                  <a href="tel:+14155550123">+1 (415) 555-0123</a>
+                </li>
+                <li class="contact-info-item">
+                  <span class="contact-icon" aria-hidden="true">◎</span>
+                  <span>San Francisco, CA — Open to Remote</span>
+                </li>
+              </ul>
+
+              <div class="divider" aria-hidden="true"></div>
+
+              <p class="skills-section-title">Connect online</p>
+              <nav aria-label="Social media links">
+                <ul class="social-links" role="list">
+                  <li>
+                    <a href="#" class="social-link" aria-label="GitHub profile" rel="noopener noreferrer">⌥</a>
+                  </li>
+                  <li>
+                    <a href="#" class="social-link" aria-label="LinkedIn profile" rel="noopener noreferrer">in</a>
+                  </li>
+                  <li>
+                    <a href="#" class="social-link" aria-label="Twitter / X profile" rel="noopener noreferrer">𝕏</a>
+                  </li>
+                  <li>
+                    <a href="#" class="social-link" aria-label="Dribbble profile" rel="noopener noreferrer">◉</a>
+                  </li>
+                  <li>
+                    <a href="#" class="social-link" aria-label="Read.cv profile" rel="noopener noreferrer">cv</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════ -->
+  <footer class="site-footer " role="contentinfo" aria-label="Site footer">
+    <div class="footer-inner">
+
+      <!-- Brand -->
+      <div class="footer-col">
+        <p class="footer-brand">Alex<span>.</span></p>
+        <p class="footer-tagline">
+          Designing and building purposeful digital experiences since 2016.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <nav class="footer-col" aria-label="Footer navigation">
+        <p class="footer-heading">Quick Links</p>
+        <ul class="footer-links" role="list">
+          <li><a href="#about"        class="footer-link">About</a></li>
+          <li><a href="#projects"     class="footer-link">Projects</a></li>
+          <li><a href="#experience"   class="footer-link">Experience</a></li>
+          <li><a href="#testimonials" class="footer-link">Testimonials</a></li>
+          <li><a href="#contact"      class="footer-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Social Links -->
+      <div class="footer-col">
+        <p class="footer-heading">Connect</p>
+        <nav aria-label="Social links in footer">
+          <ul class="footer-social" role="list">
+            <li>
+              <a href="#" class="footer-social-link" aria-label="GitHub" rel="noopener noreferrer">⌥</a>
+            </li>
+            <li>
+              <a href="#" class="footer-social-link" aria-label="LinkedIn" rel="noopener noreferrer">in</a>
+            </li>
+            <li>
+              <a href="#" class="footer-social-link" aria-label="Twitter / X" rel="noopener noreferrer">𝕏</a>
+            </li>
+            <li>
+              <a href="#" class="footer-social-link" aria-label="Dribbble" rel="noopener noreferrer">◉</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <p>© 2026 Alex Mercer. All rights reserved.</p>
+      <p>Made with intention ✦</p>
+    </div>
+  </footer>
+
+  <div class="belowfooter">
+    <p>THE END</p>
+  </div>
+
+</body>
+</html>

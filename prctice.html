@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <style>
+        .demo::first-letter {
+  color: red;
+  font-size: 40px;
+}
+
+.demo::first-line {
+  color: blue;
+  font-weight: bold;
+}
+
+.demo {
+  color:  green;
+}
+
+.text::selection {
+  background: yellow;
+  color: red;
+}
+
+
+input::placeholder {
+  color: gray;
+  font-style: italic;
+}
+
+      </style>
+  </head>
+  <body>
+    <p class="demo">
+  Hello Rakesh, welcome to CSS learning. This is a simple example to understand pseudo-elements clearly.
+</p>
+
+<p class="text">
+  This is a paragraph. Try selecting this text with your mouse.
+</p>
+
+
+<input type="text" placeholder="Enter your name">
+  </body>
+</html>

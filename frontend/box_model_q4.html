@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Model Explorer</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /*
+Why border-box is preferred:
+
+With border-box, the declared width includes padding and border.
+This prevents unexpected layout issues because the element size
+remains consistent, making responsive design easier.
+*/
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+/* Layout */
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* Wrapper */
+.box-wrapper {
+  text-align: center;
+}
+
+/* Common box styles */
+.box {
+  width: 300px;
+  padding: 20px;
+  border: 5px solid black;
+  margin: 10px;
+}
+
+/* Content-box (default) */
+.content-box {
+  box-sizing: content-box;
+  background-color: lightcoral;
+}
+
+/* Border-box */
+.border-box {
+  box-sizing: border-box;
+  background-color: lightgreen;
+}
+
+/* Label */
+.label {
+  font-size: 14px;
+  margin-top: 10px;
+}
+  </style>
+</head>
+<body>
+
+<main class="container">
+
+  <!-- Content Box -->
+  <section class="box-wrapper">
+    <div class="box content-box">
+      <p>Content Box</p>
+    </div>
+
+    <p class="label">
+      Box 1 (content-box): Rendered width = 350px <br>
+      (300 + 20 + 20 + 5 + 5)
+    </p>
+  </section>
+
+  <!-- Border Box -->
+  <section class="box-wrapper">
+    <div class="box border-box">
+      <p>Border Box</p>
+    </div>
+
+    <p class="label">
+      Box 2 (border-box): Rendered width = 300px <br>
+      (content shrinks to 250px)
+    </p>
+  </section>
+
+</main>
+
+</body>
+</html>
