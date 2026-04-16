@@ -2,7 +2,7 @@
 // CREATE WALLET (CLOSURE WITH PRIVACY)
 // =====================================
 function createWallet(ownerName, initialBalance) {
-  // 🔒 Private variables
+  //  Private variables
   let balance = initialBalance;
   let history = [];
 

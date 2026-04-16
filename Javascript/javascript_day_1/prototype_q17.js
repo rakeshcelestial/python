@@ -1,134 +1,72 @@
 // =====================================
-// BASE CLASS: Shape
+// VEHICLE CONSTRUCTOR FUNCTION
 // =====================================
-class Shape {
-  constructor(name) {
-    this.name = name;
-  }
-
-  area() {
-    throw new Error("Not implemented");
-  }
-
-  perimeter() {
-    throw new Error("Not implemented");
-  }
+function Vehicle(make, model, year) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
 }
 
 
 // =====================================
-// CIRCLE CLASS
+// METHOD ON VEHICLE PROTOTYPE
 // =====================================
-class Circle extends Shape {
-  constructor(radius) {
-    super("Circle");
+Vehicle.prototype.drive = function () {
+  console.log(`${this.make} ${this.model} (${this.year}) is driving`);
+};
 
-    if (radius <= 0) {
-      throw new Error("Radius must be positive");
-    }
 
-    this.radius = radius;
-  }
-
-  area() {
-    return Math.PI * this.radius ** 2;
-  }
-
-  perimeter() {
-    return 2 * Math.PI * this.radius;
-  }
+// =====================================
+// CAR CONSTRUCTOR FUNCTION
+// =====================================
+function Car(make, model, year) {
+  // Inherit properties from Vehicle
+  Vehicle.call(this, make, model, year);
 }
 
 
 // =====================================
-// RECTANGLE CLASS
+// PROTOTYPE INHERITANCE
 // =====================================
-class Rectangle extends Shape {
-  constructor(width, height) {
-    super("Rectangle");
 
-    if (width <= 0 || height <= 0) {
-      throw new Error("Width and height must be positive");
-    }
+// Link Car.prototype → Vehicle.prototype
+Car.prototype = Object.create(Vehicle.prototype);
 
-    this.width = width;
-    this.height = height;
-  }
-
-  area() {
-    return this.width * this.height;
-  }
-
-  perimeter() {
-    return 2 * (this.width + this.height);
-  }
-}
+// Restore constructor reference
+Car.prototype.constructor = Car;
 
 
 // =====================================
-// TRIANGLE CLASS
+// CAR-SPECIFIC METHOD
 // =====================================
-class Triangle extends Shape {
-  constructor(a, b, c) {
-    super("Triangle");
-
-    if (a <= 0 || b <= 0 || c <= 0) {
-      throw new Error("Sides must be positive");
-    }
-
-    this.a = a;
-    this.b = b;
-    this.c = c;
-  }
-
-  area() {
-    // Heron's formula
-    const s = (this.a + this.b + this.c) / 2;
-    return Math.sqrt(s * (s - this.a) * (s - this.b) * (s - this.c));
-  }
-
-  perimeter() {
-    return this.a + this.b + this.c;
-  }
-}
+Car.prototype.honk = function () {
+  console.log(`${this.make} ${this.model} (${this.year}) honks: Beep beep!`);
+};
 
 
 // =====================================
-// REPORT FUNCTION
+// TESTING
 // =====================================
-function printShapeReport(shapes) {
-  console.log("Shape Report:");
-  console.log("--------------------------");
+const car = new Car("Toyota", "Camry", 2024);
 
-  shapes.forEach(shape => {
-    // Validate instance
-    if (!(shape instanceof Shape)) {
-      throw new Error("Invalid shape in array");
-    }
+car.drive();
+car.honk();
 
-    console.log(
-      `${shape.name} | Area: ${shape.area().toFixed(2)} | Perimeter: ${shape.perimeter().toFixed(2)}`
-    );
-  });
+console.log(car instanceof Car);
+console.log(car instanceof Vehicle);
 
-  console.log("--------------------------");
-
-  // Total Area using reduce
-  const totalArea = shapes.reduce((sum, shape) => {
-    return sum + shape.area();
-  }, 0);
-
-  console.log(`Total Area: ${totalArea.toFixed(2)}`);
-}
+console.log(
+  Object.getPrototypeOf(Object.getPrototypeOf(car)) === Vehicle.prototype
+);
 
 
 // =====================================
-// INPUT / TEST
+// PROTOTYPE CHAIN VISUAL CHECK
 // =====================================
-const shapes = [
-  new Circle(10),
-  new Rectangle(5, 8),
-  new Triangle(3, 4, 5),
-];
-
-printShapeReport(shapes);
+// car
+//   ↓
+// Car.prototype
+//   ↓
+// Vehicle.prototype
+//   ↓
+// Object.prototype

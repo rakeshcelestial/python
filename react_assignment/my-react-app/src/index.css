@@ -1,0 +1,46 @@
+/* body {
+    margin: 5px;
+    border: #ca2424;
+
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+}
+
+.app {
+  margin: auto;
+  border-color: #ca2424;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 40px;
+  flex-wrap: wrap;
+}
+
+
+.profile-card {
+  margin: 5px;
+  width: 250px;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgb(244, 242, 242);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+*/
+
+.h1{
+  width: 250px;
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(217, 41, 41, 0.15);
+  text-align: center;
+}
+ 

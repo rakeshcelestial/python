@@ -1,13 +1,36 @@
-console.log("Hello world")
-console.log(typeof(42));
+/* <!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #s{
+                font-size : 40px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1 id = "s">
+                Hi 
+            </h1>
 
-console.log(typeof("hello"));
+        </div>
+        <script>
+            let a = document.getElementById("s")
+        </script>
+    </body>
+</html> */
+function outer() {
+  let count = 0;
 
-console.log(typeof(null));
-let a = null;
-let b;
+  function inner() {
+    count++;
+    console.log(count);
+  }
 
-console.log(typeof(a));
-console.log(typeof(b));
+  return inner;
+}
 
-
+const fn = outer(); // outer is executed
+fn(); // 1
+fn(); // 2
+fn(); // 3

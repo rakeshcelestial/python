@@ -2,7 +2,7 @@
 // TASK MANAGER CLASS
 // =====================================
 class TaskManager {
-  // 🔒 Private fields
+  // Private fields
   #tasks = [];
   #nextId = 1;
 

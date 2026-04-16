@@ -8,7 +8,7 @@ const prices = [500, 300, 200];
 // HOISTING DEMO (DECLARATION)
 // ==============================
 
-// ✅ Works because function declaration is hoisted
+//  Works because function declaration is hoisted
 console.log("Declaration (before definition):");
 console.log(calculateTotal(prices, 0.18, 50, 30)); // 1085.6
 console.log(calculateTotal(prices));              // 1180

@@ -22,18 +22,6 @@ function describeType(value) {
     return  typeof value;
 
     return type;
-
-    // Return based on type
-    if (type === "object") return "object";
-    if (type === "function") return "function";
-    if (type === "undefined") return "undefined";
-    if (type === "string") return "string";
-    if (type === "number") return "number";
-    if (type === "boolean") return "boolean";
-    if (type === "bigint") return "bigint";
-    if (type === "symbol") return "symbol";
-
-    return "unknown"; // fallback (just in case)
 }
 
 

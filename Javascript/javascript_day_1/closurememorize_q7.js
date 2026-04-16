@@ -2,7 +2,7 @@
 // MEMOIZE FUNCTION (CLOSURE + CACHING)
 // =====================================
 function memoize(fn) {
-  // 🔒 Private cache (closure)
+  //  Private cache (closure)
   const cache = {};
 
   return function (arg) {
@@ -57,5 +57,5 @@ console.log(fastSquare(10));  // Cache hit again
 // =====================================
 // INTERNAL CACHE IS PRIVATE
 // =====================================
-// ❌ Not accessible
+//  Not accessible
 console.log(fastSquare.cache); // undefined

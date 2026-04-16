@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Form</title>
+</head>
+<body>
+
+  <h2>Registration Form</h2>
+
+  <form id="myForm">
+    <label>Name:</label><br>
+    <input type="text" id="name" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" id="email" required><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" id="password" required><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="output"></p>
+
+  <script>
+    document.getElementById("myForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // stop page refresh
+
+      // Get values
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      // Display output
+      document.getElementById("output").innerText =
+        "Name: " + name + ", Email: " + email;
+      
+      console.log({ name, email, password });
+    });
+  </script>
+
+</body>
+</html>
